@@ -1,8 +1,13 @@
 <?php
 require 'fetchDatabase.php';
 
-$statement = $pdo -> prepare("SELECT * FROM reservations");
-$statement -> execute();
-$reservations = $statement -> fetchAll(PDO::FETCH_ASSOC);
+$statement = $pdo->prepare(
+    "INSERT INTO reservations (participants) 
+    VALUES (:participants)"
+);
+  
+$statement->execute(array(
+	":participants" => $_POST["participants"],
+));
 
 echo json_encode($reservations);
