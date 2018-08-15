@@ -12,11 +12,5 @@ $statement = $pdo -> prepare("SELECT * FROM reservations");
 $statement -> execute();
 $reservations = $statement -> fetchAll(PDO::FETCH_ASSOC);
 
+echo json_encode($reservations);
 
-?>
-
-<?php 
-foreach($reservations as $list);
-            echo $list ['id'] . " ".  " ". '</br>';   
-      echo $list ['time'] . " ".  " ". '</br>';   
-?>
