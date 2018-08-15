@@ -6,6 +6,8 @@ $pdo = new PDO(
     "root"
 );
 
+header("Access-Control-Allow-Origin: *");
+
 // Select all todos in table
 
 $statement = $pdo -> prepare("SELECT * FROM reservations");

@@ -10,10 +10,12 @@ class App extends Component {
      * that will fetch the data and store it in state
      */
     this.fetchWeather();
+
   }
 
+
   fetchWeather = () => {
-    fetch('http://localhost:8889/test.php')
+    fetch('http://localhost:8888/test.php')
       .then((response) => response.json())
       .then((reservations) => {
         /** Key is this.state.playlist
