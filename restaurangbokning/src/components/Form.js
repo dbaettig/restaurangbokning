@@ -4,18 +4,32 @@ class Form extends Component {
 	state = {
 		participants: ""
 	}
-	
 
 	handleSubmit = (event) => {
 		event.preventDefault();
-		fetch('fetchReservations.php',{
-			method: 'POST',
-			body: new FormData(this.state.participants) 
+		/*let formValues = {
+			participants: this.state.participants
+		}*/
+		console.log(this.state);
+		let formValues = JSON.stringify(this.state)
+		fetch('http://localhost:8888/postReservations.php?formData=hejsan',{
+			method: 'GET',
+			headers: 
+				{
+					'Accept': 'application/json',
+					'Content-type': 'application/json',
+				}
+		})
+
+		.then((response) => response.json())
+
+		.then((response) => {
+			console.log(response);
 		})
 	}
 	
 	handleChange = (event) => {
-		this.setState({[event.target.participants]: event.target.value})
+		this.setState({[event.target.name]: event.target.value})
 	}
 	
 	
@@ -24,8 +38,8 @@ class Form extends Component {
 		return (
 		<div>
 			<form method="POST" className="form" onSubmit={this.handleSubmit}>
-				<input type="number" name="participants" value={this.state.participants} onChange={this.handleChange} />
-				<button type="submit" value="hej"/>
+				<input type="number" min="1" max="6" name="participants" onChange={this.handleChange}/>
+				<button type="submit" value="heg">hej</button>
 			</form>
 		</div>)
 	}
