@@ -6,4 +6,3 @@ $statement -> execute();
 $reservations = $statement -> fetchAll(PDO::FETCH_ASSOC);
 
 echo json_encode($reservations);
-

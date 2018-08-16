@@ -1,11 +1,15 @@
 <?php
 require 'fetchDatabase.php';
 
-header("Content-Type: application/json; charset=UTF-8");
+//header("Content-Type: application/json; charset=UTF-8");
+echo "Formdata: " . $_GET['formData'];
 
-$formData = JSON_decode($_GET['formData'], false);
+echo "<br>";
 
-echo $formData;
+$formData = JSON_decode($_GET['formData']);
+
+var_dump($formData['participants']);
+
 
 $statement = $pdo->prepare(
     "INSERT INTO reservations (participants) 

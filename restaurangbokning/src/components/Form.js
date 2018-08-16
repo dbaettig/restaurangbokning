@@ -10,7 +10,8 @@ class Form extends Component {
 		/*let fromState = {
 			participants: this.state.participants
 		}*/
-		let formValues = JSON.stringify(this.state)
+		let formValues = JSON.stringify(this.state);
+		
 
 		console.log(formValues);
 
