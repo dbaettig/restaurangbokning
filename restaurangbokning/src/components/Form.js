@@ -7,12 +7,14 @@ class Form extends Component {
 
 	handleSubmit = (event) => {
 		event.preventDefault();
-		/*let formValues = {
+		/*let fromState = {
 			participants: this.state.participants
 		}*/
-		console.log(this.state);
 		let formValues = JSON.stringify(this.state)
-		fetch('http://localhost:8888/postReservations.php?formData=hejsan',{
+
+		console.log(formValues);
+
+		fetch('http://localhost:8888/postReservations.php?formData=' + formValues,{
 			method: 'GET',
 			headers: 
 				{
@@ -20,9 +22,6 @@ class Form extends Component {
 					'Content-type': 'application/json',
 				}
 		})
-
-		.then((response) => response.json())
-
 		.then((response) => {
 			console.log(response);
 		})

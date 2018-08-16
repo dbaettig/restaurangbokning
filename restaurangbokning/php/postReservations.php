@@ -1,7 +1,9 @@
 <?php
 require 'fetchDatabase.php';
 
-$formData = json_decode($_GET['formData'], false);
+header("Content-Type: application/json; charset=UTF-8");
+
+$formData = JSON_decode($_GET['formData'], false);
 
 echo $formData;
 
@@ -14,4 +16,4 @@ $statement->execute(array(
 	":participants" => $formData->participants
 ));
 
-echo json_encode($reservations);
+//echo json_encode($reservations);
