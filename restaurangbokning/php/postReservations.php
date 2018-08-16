@@ -13,12 +13,13 @@ var_dump($formData);
 
 
 $statement = $pdo->prepare(
-    "INSERT INTO reservations (participants) 
-    VALUES (:participants)"
+    "INSERT INTO reservations (participants, guestId) 
+    VALUES (:participants, :guestId)"
 );
   
 $statement->execute(array(
-	":participants" => $formData->participants
+    ":participants" => $formData->participants,
+    ":guestId" => $formData->guestId
 ));
 
 //echo json_encode($reservations);
