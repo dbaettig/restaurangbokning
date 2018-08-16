@@ -8,7 +8,8 @@ echo "<br>";
 
 $formData = JSON_decode($_GET['formData']);
 
-var_dump($formData['participants']);
+var_dump($formData);
+
 
 
 $statement = $pdo->prepare(
