@@ -3,8 +3,24 @@ import React, { Component } from 'react';
 class Form extends Component {
 	state = {
 		participants: "",
-		guestId: "9"
+		guestId: "",
+		date: "",
+		time: "",
+		name: "",
+		phone: "",
+		email: ""
 	}
+
+	fetchDate = (event) => {
+		event.preventDefault();
+		fetch('http://localhost:8888/fetchDate.php?date=' + this.state.date)
+		  .then((response) => response.json())
+		  .then((response) => {
+			console.log(response);
+
+
+		  })
+	  }
 
 	handleSubmit = (event) => {
 		event.preventDefault();
@@ -36,9 +52,10 @@ class Form extends Component {
 	render() {
 		return (
 			<div>
-				<form method="POST" className="form" onSubmit={this.handleSubmit}>
+				<form method="GET" className="form" onSubmit={this.fetchDate}>
 					<input type="number" min="1" max="6" name="participants" onChange={this.handleChange} />
-					<button type="submit" value="heg">hej</button>
+					<input type="date" name="date" onChange={this.handleChange} />
+					<button type="submit" value="submit">Submit</button>
 				</form>
 			</div>)
 	}
