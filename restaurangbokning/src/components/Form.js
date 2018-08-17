@@ -8,9 +8,7 @@ class Form extends Component {
 
 	handleSubmit = (event) => {
 		event.preventDefault();
-		/*let fromState = {
-			participants: this.state.participants
-		}*/
+
 		let formValues = JSON.stringify(this.state);
 
 
