@@ -13,14 +13,22 @@ class Form extends Component {
 
 	fetchDate = (event) => {
 		event.preventDefault();
-		fetch('http://localhost:8888/fetchDate.php?date=' + this.state.date)
-		  .then((response) => response.json())
-		  .then((response) => {
-			console.log(response);
 
+		let date = this.state.date;
+		console.log(date);
 
-		  })
-	  }
+		fetch('http://localhost:8888/fetchDate.php?formData=' + date, {
+			method: 'GET',
+			headers:
+			{
+				'Accept': 'application/json',
+				'Content-type': 'application/json',
+			}
+		})
+			.then((response) => {
+				console.log(response);
+			})
+		}
 
 	handleSubmit = (event) => {
 		event.preventDefault();
@@ -30,7 +38,7 @@ class Form extends Component {
 
 		console.log(formValues);
 
-		fetch('http://localhost:8888/postReservations.php?formData=' + formValues, {
+		fetch('http://localhost:8888/postReservations.php?formData=53634' + formValues, {
 			method: 'GET',
 			headers:
 			{
@@ -52,7 +60,7 @@ class Form extends Component {
 	render() {
 		return (
 			<div>
-				<form method="GET" className="form" onSubmit={this.fetchDate}>
+				<form method="POST" className="form" onSubmit={this.fetchDate}>
 					<input type="number" min="1" max="6" name="participants" onChange={this.handleChange} />
 					<input type="date" name="date" onChange={this.handleChange} />
 					<button type="submit" value="submit">Submit</button>

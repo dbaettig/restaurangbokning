@@ -2,11 +2,17 @@
 require 'fetchDatabase.php';
 
 
+$formData = JSON_decode($_GET['formData']);
 
-$statement = $pdo -> prepare("SELECT * FROM reservations WHERE date = '2018-08-18'");
+var_dump($formData);
+
+
+$statement = $pdo -> prepare("SELECT time FROM reservations WHERE date = " . $formData);
 $statement -> execute();
+
 $time = $statement -> fetchAll(PDO::FETCH_ASSOC);
 
 var_dump($time);
+
 
 echo json_encode($time);
