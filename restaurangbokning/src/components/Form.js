@@ -13,7 +13,6 @@ class Form extends Component {
 
 	fetchDate = (event) => {
 		event.preventDefault();
-		
 		let formValues = JSON.stringify(this.state.date);
 		
 		console.log(formValues);
@@ -38,7 +37,7 @@ class Form extends Component {
 
 		console.log(formValues);
 
-		fetch('http://localhost:8888/postReservations.php?formData=' + formValues, {
+		fetch('http://localhost:8888/postReservations.php?formData=53634' + formValues, {
 			method: 'GET',
 			headers:
 			{
@@ -60,7 +59,7 @@ class Form extends Component {
 	render() {
 		return (
 			<div>
-				<form method="GET" className="form" onSubmit={this.fetchDate}>
+				<form method="POST" className="form" onSubmit={this.fetchDate}>
 					<input type="number" min="1" max="6" name="participants" onChange={this.handleChange} />
 					<input type="date" name="date" onChange={this.handleChange} />
 					<button type="submit" value="submit">Submit</button>
