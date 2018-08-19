@@ -2,13 +2,19 @@ import React, { Component } from 'react';
 
 class Form extends Component {
 	state = {
+		participants: "",
+		guestId: "",
 		date: "",
+		time: "",
+		name: "",
+		phone: "",
+		email: ""
 	}
 
 	fetchDate = (event) => {
 		event.preventDefault();
 		
-		let formValues = JSON.stringify(this.state);
+		let formValues = JSON.stringify(this.state.date);
 		
 		console.log(formValues);
 
@@ -19,8 +25,7 @@ class Form extends Component {
 				'Accept': 'application/json',
 				'Content-type': 'application/json',
 			}
-		})
-			.then((response) => {
+		}).then((response) => {
 				console.log(response);
 			})
 	  }
