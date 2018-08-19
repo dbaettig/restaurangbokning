@@ -2,18 +2,12 @@ import React, { Component } from 'react';
 
 class Form extends Component {
 	state = {
-		participants: "",
-		guestId: "",
-		date: "",
-		time: "",
-		name: "",
-		phone: "",
-		email: ""
+		date: ""
 	}
 
 	fetchDate = (event) => {
 		event.preventDefault();
-		let formValues = JSON.stringify(this.state.date);
+		let formValues = JSON.stringify(this.state);
 		
 		console.log(formValues);
 
