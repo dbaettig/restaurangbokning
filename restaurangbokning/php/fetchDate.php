@@ -1,9 +1,15 @@
 <?php
 require 'fetchDatabase.php';
 
+$formData = JSON_decode($_GET['formData']);
+
+print_r($formData);
+print_r($formData -> date);
+
+$date = $formData -> date;
 
 
-$statement = $pdo -> prepare("SELECT * FROM reservations WHERE date = '2018-08-18'");
+$statement = $pdo -> prepare("SELECT participants FROM reservations WHERE date = '$date'");
 $statement -> execute();
 $time = $statement -> fetchAll(PDO::FETCH_ASSOC);
 

@@ -2,24 +2,27 @@ import React, { Component } from 'react';
 
 class Form extends Component {
 	state = {
-		participants: "",
-		guestId: "",
 		date: "",
-		time: "",
-		name: "",
-		phone: "",
-		email: ""
 	}
 
 	fetchDate = (event) => {
 		event.preventDefault();
-		fetch('http://localhost:8888/fetchDate.php?date=' + this.state.date)
-		  .then((response) => response.json())
-		  .then((response) => {
-			console.log(response);
+		
+		let formValues = JSON.stringify(this.state);
+		
+		console.log(formValues);
 
-
-		  })
+		fetch('http://localhost:8888/fetchDate.php?formData=' + formValues, {
+			method: 'GET',
+			headers:
+			{
+				'Accept': 'application/json',
+				'Content-type': 'application/json',
+			}
+		})
+			.then((response) => {
+				console.log(response);
+			})
 	  }
 
 	handleSubmit = (event) => {
@@ -57,6 +60,8 @@ class Form extends Component {
 					<input type="date" name="date" onChange={this.handleChange} />
 					<button type="submit" value="submit">Submit</button>
 				</form>
+				<p>{this.state.date}</p>
+			<p>hej</p>
 			</div>)
 	}
 }
