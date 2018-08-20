@@ -93,7 +93,7 @@ class Form extends Component {
 		})
 
 	}
-	
+
 	postGuestAndReservation = (event) => {
 		event.preventDefault();
 		let formValues = JSON.stringify(this.state);
@@ -105,7 +105,7 @@ class Form extends Component {
 				'Accept': 'application/json',
 				'Content-type': 'application/json',
 			}
-		}).then((response) => response.json())
+		})
 			.then((response) => {
 				console.log(response);
 			})
@@ -116,43 +116,43 @@ class Form extends Component {
 		return (
 			<div>
 				{this.state.showGuestForm ? (<div>
-				 	<p>Du har valt {this.state.date}, klockan {this.state.chosenSitting} för {this.state.participants} personer.</p>
-				 	<form method="POST" onSubmit={this.postGuestAndReservation}>
-				 		<input type="text" name="firstName" onChange={this.handleChange}/>
-				 		<input type="text" name="lastName" onChange={this.handleChange}/>
-				 		<input type="text" name="phone" onChange={this.handleChange}/>
-				 		<input type="text" name="email" onChange={this.handleChange}/>
-				 		<button type="submit">Boka</button>
-				 	</form>
-				 </div>) : (
-					< div >
+					<p>Du har valt {this.state.date}, klockan {this.state.chosenSitting} för {this.state.participants} personer.</p>
+					<form method="POST" onSubmit={this.postGuestAndReservation}>
+						<input type="text" name="firstName" onChange={this.handleChange} />
+						<input type="text" name="lastName" onChange={this.handleChange} />
+						<input type="text" name="phone" onChange={this.handleChange} />
+						<input type="text" name="email" onChange={this.handleChange} />
+						<button type="submit">Boka</button>
+					</form>
+				</div>) : (
+						< div >
 
-						<form method="POST" className="form" onSubmit={this.fetchDate}>
-							<input type="number" min="1" max="6" name="participants" onChange={this.handleChange} />
-							<input type="date" name="date" onChange={this.handleChange} />
-							<button type="submit" value="submit">Submit</button>
-						</form>
-						<div className="timeButtons">
-							{this.state.firstSitting ? (
-								<button name="chosenSitting" value="18:00:00" onClick={(event) => { this.handleChange(event); this.showGuestForm(); }}>
-									18:00</button>
-
-
-							) :
-								(<p>inga lediga tider kl 18.00</p>)
-							}
-							{this.state.secondSitting ? (
-								<button name="chosenSitting" value="21:00:00" onClick={(event) => { this.handleChange(event); this.showGuestForm(); }}>
-									21:00</button>
+							<form method="POST" className="form" onSubmit={this.fetchDate}>
+								<input type="number" min="1" max="6" name="participants" onChange={this.handleChange} />
+								<input type="date" name="date" onChange={this.handleChange} />
+								<button type="submit" value="submit">Submit</button>
+							</form>
+							<div className="timeButtons">
+								{this.state.firstSitting ? (
+									<button name="chosenSitting" value="18:00:00" onClick={(event) => { this.handleChange(event); this.showGuestForm(); }}>
+										18:00</button>
 
 
-							) :
-								(<p>inga lediga tider kl 21.00</p>)
-							}
+								) :
+									(<p>inga lediga tider kl 18.00</p>)
+								}
+								{this.state.secondSitting ? (
+									<button name="chosenSitting" value="21:00:00" onClick={(event) => { this.handleChange(event); this.showGuestForm(); }}>
+										21:00</button>
+
+
+								) :
+									(<p>inga lediga tider kl 21.00</p>)
+								}
+							</div>
+
 						</div>
-
-					</div>
-				)}
+					)}
 
 			</div>
 		);
