@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 
 class Form extends Component {
 	state = {
-		date: ""
+		date: "",
+		response: {},
+		firstTime: false,
+		secondTime: false
 	}
 
 	fetchDate = (event) => {
@@ -21,7 +24,9 @@ class Form extends Component {
 		})
 		.then((response) => response.json())
 		.then((time) => {
-				console.log(time);
+				//this.setState({response: time});
+				//this.countReservations(this.state.response);
+				this.countReservations(time);
 			})
 	  }
 
@@ -48,6 +53,22 @@ class Form extends Component {
 
 	handleChange = (event) => {
 		this.setState({ [event.target.name]: event.target.value })
+	}
+
+	countReservations = (time) => {
+		this.setState({response: time});
+		console.log(this.state.response);
+		//filtrera till 2 olika arrayer
+		let firstTime = time.filter(sitting => sitting.time === "18:00:00");
+		let secondTime = time.filter(sitting => sitting.time === "21:00:00");
+		console.log(firstTime.length);
+		console.log(secondTime.length);
+
+		//räkna dom olika arrayerna
+
+
+		//sätt state true eller false
+
 	}
 
 
