@@ -8,7 +8,6 @@ class Admin extends Component {
 
 
     componentDidMount() {
-
         this.fetchReservations();
     }
 
@@ -41,9 +40,6 @@ class Admin extends Component {
                 'Content-type': 'application/json',
             }
         })
-            .then((response) => {
-                console.log(response);
-            })
 
     }
 
@@ -60,5 +56,6 @@ class Admin extends Component {
 
 
 }
+
 
 export default Admin;

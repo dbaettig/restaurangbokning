@@ -1,10 +1,7 @@
 <?
 require 'fetchDatabase.php';
 
-$formData = JSON_decode($_GET['formData']);
-echo($formData);
-
-$id = $formData;
+$id = JSON_decode($_GET['formData']);
 
 $statement = $pdo->prepare(
     "DELETE FROM reservations WHERE id = '$id'"
