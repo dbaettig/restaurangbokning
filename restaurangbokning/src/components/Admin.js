@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 
 class Admin extends Component {
     state = {
-        reservations: []
+        reservations: [],
+        reservationId: ""
     }
 
 
@@ -19,11 +20,30 @@ class Admin extends Component {
                 this.displayReservations(data);
             })
     }
+
+
     displayReservations = (data) => {
-        let reservations = data.map((reservation) => <li key={reservation.id}>{reservation.date}{reservation.time}{reservation.participants}
-        </li>);
+        let reservations = data.map((reservation) => <li key={reservation.id}>{reservation.date}{reservation.time}
+            {reservation.participants}
+            <button name={reservation.id} onClick={this.deleteReservation}>Delete</button></li>);
+
         this.setState({ reservations: reservations })
-        console.log(reservations)
+    }
+
+    deleteReservation = (event) => {
+        console.log(event.target);
+
+        fetch('http://localhost:8888/deleteReservation.php?formData=' + event.target.name, {
+            method: 'GET',
+            headers:
+            {
+                'Accept': 'application/json',
+                'Content-type': 'application/json',
+            }
+        })
+            .then((response) => {
+                console.log(response);
+            })
 
     }
 
@@ -32,6 +52,7 @@ class Admin extends Component {
         return (
             <div>
                 <ul>{this.state.reservations}</ul>
+
             </div>
 
         );
