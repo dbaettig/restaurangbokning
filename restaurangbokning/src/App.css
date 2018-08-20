@@ -30,3 +30,7 @@
 button{
 border:black solid 2px;
 }
+
+input {
+	border: 2px solid black;
+}

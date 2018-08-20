@@ -8,7 +8,11 @@ class Form extends Component {
 		firstSitting: false,
 		secondSitting: false,
 		chosenSitting: "",
-		showGuestForm: false
+		showGuestForm: false,
+		firstName: "",
+		lastName: "",
+		phone: "",
+		email: ""
 	}
 
 	fetchDate = (event) => {
@@ -89,12 +93,38 @@ class Form extends Component {
 		})
 
 	}
+	
+	postGuestAndReservation = (event) => {
+		event.preventDefault();
+		let formValues = JSON.stringify(this.state);
+		console.log(formValues);
+		fetch('http://localhost:8888/postGuestAndReservation.php?formData=' + formValues, {
+			method: 'GET',
+			headers:
+			{
+				'Accept': 'application/json',
+				'Content-type': 'application/json',
+			}
+		}).then((response) => response.json())
+			.then((response) => {
+				console.log(response);
+			})
+	}
 
 
 	render() {
 		return (
 			<div>
-				{this.state.showGuestForm ? (<div>"hejhej form"</div>) : (
+				{this.state.showGuestForm ? (<div>
+				 	<p>Du har valt {this.state.date}, klockan {this.state.chosenSitting} för {this.state.participants} personer.</p>
+				 	<form method="POST" onSubmit={this.postGuestAndReservation}>
+				 		<input type="text" name="firstName" onChange={this.handleChange}/>
+				 		<input type="text" name="lastName" onChange={this.handleChange}/>
+				 		<input type="text" name="phone" onChange={this.handleChange}/>
+				 		<input type="text" name="email" onChange={this.handleChange}/>
+				 		<button type="submit">Boka</button>
+				 	</form>
+				 </div>) : (
 					< div >
 
 						<form method="POST" className="form" onSubmit={this.fetchDate}>
