@@ -18,8 +18,10 @@ class Form extends Component {
 				'Accept': 'application/json',
 				'Content-type': 'application/json',
 			}
-		}).then((response) => {
-				console.log(response);
+		})
+		.then((response) => response.json())
+		.then((time) => {
+				console.log(time);
 			})
 	  }
 
