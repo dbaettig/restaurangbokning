@@ -88,3 +88,9 @@ border-style:none;
 .displayBookings button{
   border:black solid 1px;
 }
+.hidden {
+	display: none;
+}
+.display {
+	display: block;
+}
