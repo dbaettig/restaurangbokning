@@ -96,7 +96,7 @@ class Form extends Component {
 			<div className="formWrapper">
 
 				{this.state.showGuestForm ? (<div>
-					<p>Du har valt {this.state.date}, klockan {this.state.chosenSitting} för {this.state.participants} personer.</p>
+					<p>You have chosen {this.state.date}, at {this.state.chosenSitting} PM for {this.state.participants} people.</p>
 					<form method="POST" className="dateForm" onSubmit={this.postGuestAndReservation}>
 						<input type="text" name="firstName" placeholder="first name" onChange={this.handleChange} />
 						<input type="text" name="lastName" placeholder="last name" onChange={this.handleChange} />
@@ -115,16 +115,16 @@ class Form extends Component {
 							<div className="timeButtons">
 								<p>Available sittings</p>
 								{this.state.firstSitting ? (
-									<button name="chosenSitting" value="18:00:00" onClick={(event) => { this.handleChange(event); this.showGuestForm(); }}>
-										18:00</button>
+									<button name="chosenSitting" value="06:00:00" onClick={(event) => { this.handleChange(event); this.showGuestForm(); }}>
+										06:00</button>
 
 
 								) :
 									(<p>inga lediga tider kl 18.00</p>)
 								}
 								{this.state.secondSitting ? (
-									<button name="chosenSitting" value="21:00:00" onClick={(event) => { this.handleChange(event); this.showGuestForm(); }}>
-										21:00</button>
+									<button name="chosenSitting" value="09:00:00" onClick={(event) => { this.handleChange(event); this.showGuestForm(); }}>
+										09:00</button>
 
 
 								) :
