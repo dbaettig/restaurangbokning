@@ -67,10 +67,17 @@ cursor:pointer;
 border-style:none;
 height:30px;
 font-family:'Open Sans', sans-serif ;
+background: white;
 }
+
 button:hover{
   color: white;
   background-color:black;
+}
+
+.adminButton {
+  width: 100%;
+  text-align: center;
 }
 
 input {

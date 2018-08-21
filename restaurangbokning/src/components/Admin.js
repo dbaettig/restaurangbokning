@@ -72,6 +72,7 @@ class Admin extends Component {
 			.then((response) => {
 				console.log(response);
 			})
+            window.location.reload(true)
     }
 
     deleteReservation = (event) => {

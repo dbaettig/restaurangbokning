@@ -37,27 +37,6 @@ class Form extends Component {
 			})
 	}
 
-	handleSubmit = (event) => {
-		event.preventDefault();
-
-		let formValues = JSON.stringify(this.state);
-
-
-		console.log(formValues);
-
-		fetch('http://localhost:8888/postReservations.php?formData=53634' + formValues, {
-			method: 'GET',
-			headers:
-			{
-				'Accept': 'application/json',
-				'Content-type': 'application/json',
-			}
-		})
-			.then((response) => {
-				console.log(response);
-			})
-	}
-
 	handleChange = (event) => {
 		this.setState({ [event.target.name]: event.target.value })
 
@@ -129,9 +108,9 @@ class Form extends Component {
 						< div >
 
 							<form method="POST" className="dateForm" onSubmit={this.fetchDate}>
-								<input type="number" min="1" max="6" name="participants" placeholder="2 People" onChange={this.handleChange} />
+								<input type="number" min="1" max="6" required name="participants" placeholder="2 People" onChange={this.handleChange} />
 								<input type="date" name="date" onChange={this.handleChange} />
-								<button type="submit" value="submit">BOOK</button>
+								<button type="submit" value="submit">SEARCH AVAILABILITY</button>
 							</form>
 							<div className="timeButtons">
 								<p>Available sittings</p>

@@ -22,7 +22,8 @@ class App extends Component {
   }
 
   openAdmin = () => {
-    this.setState({admin: true});
+    this.setState({admin: !this.state.admin});
+    console.log(this.state.admin);
   }
 
 
@@ -30,8 +31,7 @@ class App extends Component {
   render() {
     return (
       <div className="wrapper">
-        <Header />
-        <button onClick={this.openAdmin}>Admin</button>
+        <Header openAdmin = {this.openAdmin} admin = {this.state.admin}/>
       
         {this.state.admin ? (<Admin />) : (
                             <Form /> 
