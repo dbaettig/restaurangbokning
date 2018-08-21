@@ -33,11 +33,10 @@ class App extends Component {
         <Header />
         <button onClick={this.openAdmin}>Admin</button>
       
-        {this.state.admin ? 
-          (<Admin />) : (
-          <Form /> )
-        }
-        
+        {this.state.admin ? (<Admin />) : (
+                            <Form /> 
+        )}
+
       </div>
     );
   }

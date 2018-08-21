@@ -88,14 +88,20 @@ border-style:none;
 .displayBookings button{
   border:black solid 1px;
 }
+
+.changeForm {
+  position: absolute;
+  z-index: 1;
+  background-color: grey;
+  color: black;
+  height: 200px;
+  width: 200px;
+}
+
+
 .hidden {
 	display: none;
 }
 .display {
 	display: block;
-}
-
-.changeForm {
-  border: 1px solid red;
-  margin: 10px;
 }
