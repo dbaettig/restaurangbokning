@@ -22,7 +22,7 @@ class Admin extends Component {
 
 
     displayReservations = (data) => {
-        let reservations = data.map((reservation) => <li key={reservation.id}>{reservation.date}{reservation.time}
+        let reservations = data.map((reservation) => <li key={reservation.id}> {reservation.date}{' '}{reservation.time}{' '}
             {reservation.participants}
             <button name={reservation.id} onClick={this.deleteReservation}>Delete</button></li>);
 
@@ -40,13 +40,15 @@ class Admin extends Component {
                 'Content-type': 'application/json',
             }
         })
+        window.location.reload(true)
 
     }
 
     render() {
 
         return (
-            <div>
+            <div className="displayBookings">
+
                 <ul>{this.state.reservations}</ul>
 
             </div>

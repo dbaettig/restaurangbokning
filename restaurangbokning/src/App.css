@@ -1,36 +1,90 @@
-.App {
-  text-align: center;
+.wrapper{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction:column;
+  width:100%;
+  margin:5px;
+  
+}
+.formWrapper{
+  display:flex;
+  background-color: whitesmoke;
+  -webkit-box-shadow: 0px 7px 37px -12px  rgb(18, 13, 26);
+  width:30%;
+  justify-content:center;
+  margin:-50px;
+
+
+
+}
+header{
+  width: 99vw;
+  background: url(../src/images/greenLeaf.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height:300px;
+ text-align: center;
+
+ 
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+h2{
+  font-family: 'Paytone One', sans-serif;
+  color:whitesmoke;
+  font-size:3.3em; 
+  letter-spacing: 5px;
+  padding-top:100px;
+  height:250px;
+  -webkit-margin-before: 0em;
+  -webkit-margin-after: 0em;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.dateForm{
+  display:flex;
+  flex-direction:column;
+  margin:10px;
 }
-
-.App-title {
-  font-size: 1.5em;
+p{
+  font-family: 'Open Sans', sans-serif ;
+color:black;
 }
+.timeButtons{
+text-align: center;
+margin:20px;
 
-.App-intro {
-  font-size: large;
 }
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.timeButtons button{
+margin:5px;
 }
 
 button{
-border:black solid 2px;
+width:50%;
+margin:0px auto;
+border-radius:2px;
+color:black;
+cursor:pointer;
+border-style:none;
+height:30px;
+font-family:'Open Sans', sans-serif ;
+}
+button:hover{
+  color: white;
+  background-color:black;
 }
 
 input {
-	border: 2px solid black;
+  max-width:100%;
+border-radius:2px;
+border-style:none;
+  margin:10px;
+  height:30px;
+}
+
+.displayBookings ul{
+  margin-top:100px;
+  list-style: none;
+}
+.displayBookings button{
+  border:black solid 1px;
 }

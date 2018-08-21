@@ -114,25 +114,27 @@ class Form extends Component {
 
 	render() {
 		return (
-			<div>
+			<div className="formWrapper">
+
 				{this.state.showGuestForm ? (<div>
 					<p>Du har valt {this.state.date}, klockan {this.state.chosenSitting} för {this.state.participants} personer.</p>
-					<form method="POST" onSubmit={this.postGuestAndReservation}>
-						<input type="text" name="firstName" onChange={this.handleChange} />
-						<input type="text" name="lastName" onChange={this.handleChange} />
-						<input type="text" name="phone" onChange={this.handleChange} />
-						<input type="text" name="email" onChange={this.handleChange} />
-						<button type="submit">Boka</button>
+					<form method="POST" className="dateForm" onSubmit={this.postGuestAndReservation}>
+						<input type="text" name="firstName" placeholder="first name" onChange={this.handleChange} />
+						<input type="text" name="lastName" placeholder="last name" onChange={this.handleChange} />
+						<input type="text" name="phone" placeholder="phone number" onChange={this.handleChange} />
+						<input type="text" name="email" placeholder="email" onChange={this.handleChange} />
+						<button type="submit">BOOK</button>
 					</form>
 				</div>) : (
 						< div >
 
-							<form method="POST" className="form" onSubmit={this.fetchDate}>
-								<input type="number" min="1" max="6" name="participants" onChange={this.handleChange} />
+							<form method="POST" className="dateForm" onSubmit={this.fetchDate}>
+								<input type="number" min="1" max="6" name="participants" placeholder="2 People" onChange={this.handleChange} />
 								<input type="date" name="date" onChange={this.handleChange} />
-								<button type="submit" value="submit">Submit</button>
+								<button type="submit" value="submit">BOOK</button>
 							</form>
 							<div className="timeButtons">
+								<p>Available sittings</p>
 								{this.state.firstSitting ? (
 									<button name="chosenSitting" value="18:00:00" onClick={(event) => { this.handleChange(event); this.showGuestForm(); }}>
 										18:00</button>
