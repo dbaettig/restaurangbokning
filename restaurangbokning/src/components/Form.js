@@ -113,14 +113,14 @@ class Form extends Component {
 								<button type="submit" value="submit">SEARCH AVAILABILITY</button>
 							</form>
 							<div className="timeButtons">
-								<p>Available sittings</p>
+								<p>Available sittings:</p>
 								{this.state.firstSitting ? (
 									<button name="chosenSitting" value="06:00:00" onClick={(event) => { this.handleChange(event); this.showGuestForm(); }}>
 										06:00</button>
 
 
 								) :
-									(<p>inga lediga tider kl 18.00</p>)
+									(<p>There are no available tables at 06:00 PM.</p>)
 								}
 								{this.state.secondSitting ? (
 									<button name="chosenSitting" value="09:00:00" onClick={(event) => { this.handleChange(event); this.showGuestForm(); }}>
@@ -128,7 +128,7 @@ class Form extends Component {
 
 
 								) :
-									(<p>inga lediga tider kl 21.00</p>)
+									(<p>There are no available tables at 09:00 PM.</p>)
 								}
 							</div>
 
