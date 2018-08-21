@@ -7,6 +7,7 @@ import Header from './Header';
 
 class App extends Component {
   state = {
+    admin: false
 
   }
 
@@ -20,14 +21,23 @@ class App extends Component {
       })
   }
 
+  openAdmin = () => {
+    this.setState({admin: true});
+  }
+
 
 
   render() {
     return (
       <div className="wrapper">
         <Header />
-        <Form />
-        <Admin />
+        <button onClick={this.openAdmin}>Admin</button>
+      
+        {this.state.admin ? 
+          (<Admin />) : (
+          <Form /> )
+        }
+        
       </div>
     );
   }

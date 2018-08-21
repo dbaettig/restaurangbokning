@@ -94,3 +94,8 @@ border-style:none;
 .display {
 	display: block;
 }
+
+.changeForm {
+  border: 1px solid red;
+  margin: 10px;
+}

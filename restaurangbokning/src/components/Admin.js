@@ -71,7 +71,7 @@ class Admin extends Component {
 		{this.state.changeReservationForm ? (styling += "display") : (styling = 'hidden')}
         return (
 			<div>
-			<form method="POST" className={styling}>
+			<form method="POST" className={'changeForm ' +  styling}>
 				<input type="number" min="1" max="6" name="participants" placeholder="2 People" onChange={this.handleChange} />
 				<input type="date" name="date" onChange={this.handleChange} />
 				<button type="submit" value="submit">BOOK</button>
