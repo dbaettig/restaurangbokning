@@ -19,8 +19,6 @@ class Form extends Component {
 		event.preventDefault();
 		let formValues = JSON.stringify(this.state);
 
-		console.log(formValues);
-
 		fetch('http://localhost:8888/fetchDate.php?formData=' + formValues, {
 			method: 'GET',
 			headers:
@@ -37,19 +35,10 @@ class Form extends Component {
 			})
 	}
 
-	handleChange = (event) => {
-		this.setState({ [event.target.name]: event.target.value })
-
-	}
-
 	countReservations = (time) => {
 		this.setState({ response: time });
-		console.log(this.state.response);
-		//filtrera till 2 olika arrayer
 		let firstTime = time.filter(sitting => sitting.time === "18:00:00");
 		let secondTime = time.filter(sitting => sitting.time === "21:00:00");
-		console.log(firstTime.length);
-		console.log(secondTime.length);
 
 		if (firstTime.length < 15) {
 			this.setState({
@@ -61,16 +50,12 @@ class Form extends Component {
 				secondSitting: true
 			})
 		}
-
-		//räkna dom olika arrayerna
-		//sätt state true eller false
-
 	}
+
 	showGuestForm = (event) => {
 		this.setState({
 			showGuestForm: true
 		})
-
 	}
 
 	postGuestAndReservation = (event) => {
@@ -90,12 +75,17 @@ class Form extends Component {
 			})
 	}
 
+	handleChange = (event) => {
+		this.setState({ [event.target.name]: event.target.value })
+	}
+
 
 	render() {
 		return (
 			<div className="formWrapper">
 
-				{this.state.showGuestForm ? (<div>
+				{this.state.showGuestForm ? (
+				<div>
 					<p>You have chosen {this.state.date}, at {this.state.chosenSitting} PM for {this.state.participants} people.</p>
 					<form method="POST" className="dateForm" onSubmit={this.postGuestAndReservation}>
 						<input type="text" name="firstName" placeholder="first name" onChange={this.handleChange} />
@@ -104,14 +94,15 @@ class Form extends Component {
 						<input type="text" name="email" placeholder="email" onChange={this.handleChange} />
 						<button type="submit">BOOK</button>
 					</form>
-				</div>) : (
-						< div >
-
+				</div>
+				) : (
+						<div>
 							<form method="POST" className="dateForm" onSubmit={this.fetchDate}>
 								<input type="number" min="1" max="6" required name="participants" placeholder="2 People" onChange={this.handleChange} />
 								<input type="date" name="date" onChange={this.handleChange} />
 								<button type="submit" value="submit">SEARCH AVAILABILITY</button>
 							</form>
+
 							<div className="timeButtons">
 								<p>Available sittings:</p>
 								{this.state.firstSitting ? (
@@ -119,8 +110,8 @@ class Form extends Component {
 										06:00</button>
 
 
-								) :
-									(<p>There are no available tables at 06:00 PM.</p>)
+								) : (
+								<p>There are no available tables at 06:00 PM.</p>)
 								}
 								{this.state.secondSitting ? (
 									<button name="chosenSitting" value="09:00:00" onClick={(event) => { this.handleChange(event); this.showGuestForm(); }}>

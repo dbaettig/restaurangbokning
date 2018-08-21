@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 
 class Admin extends Component {
     state = {
+        changeReservationForm: false,
         reservations: [],
         reservationId: "",
-        changeReservationForm: false,
         participants: ""
     }
-
 
     componentDidMount() {
         this.fetchReservations();
@@ -17,9 +16,9 @@ class Admin extends Component {
         fetch('http://localhost:8888/fetchReservations.php')
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
                 this.displayReservations(data);
             })
+
 		/*const urls = [
    'http://localhost:8888/fetchReservations.php',
    'http://localhost:8888/fetchGuest.php'
@@ -37,29 +36,28 @@ class Admin extends Component {
 
     }
 
-
     displayReservations = (data) => {
-        console.log(data);
-        let reservations = data.map((reservation) => <div key={reservation.resId}> Datum: {reservation.date} {reservation.time}
-            {reservation.participants} {reservation.firstName} ID: {reservation.resId}
-            <button name={reservation.resId} onClick={this.deleteReservation}>Delete</button>
-			<button name={reservation.resId} onClick={this.openChangeForm}>Change</button></div>);
+        let reservations = data.map((reservation) => 
+            <div key={reservation.resId}> 
+                Datum: {reservation.date} {reservation.time}{reservation.participants} {reservation.firstName} ID: {reservation.resId}
+                <button name={reservation.resId} onClick={this.deleteReservation}>Delete</button>
+                <button name={reservation.resId} onClick={this.openChangeForm}>Change</button>
+            </div>
+        );
 
         this.setState({ reservations: reservations })
     }
 	
 	openChangeForm = (event) => {
-        this.setState({reservationId: event.target.name});
-        this.setState({changeReservationForm: true});
-
+        this.setState({
+            reservationId: event.target.name, 
+            changeReservationForm: true
+        });
 	}
 
     changeReservation = (event) => {
         event.preventDefault();
-        
         let formValues = JSON.stringify(this.state);
-        
-        console.log(this.state);
         
 		fetch('http://localhost:8888/updateReservation.php?formData=' + formValues, {
 			method: 'GET',
@@ -68,16 +66,15 @@ class Admin extends Component {
 				'Accept': 'application/json',
 				'Content-type': 'application/json',
 			}
-		})
-			.then((response) => {
+        })
+        .then((response) => {
 				console.log(response);
-			})
-            window.location.reload(true)
+        })
+            
+        window.location.reload(true)
     }
 
     deleteReservation = (event) => {
-        console.log(event.target);
-
         fetch('http://localhost:8888/deleteReservation.php?formData=' + event.target.name, {
             method: 'GET',
             headers:
@@ -86,36 +83,32 @@ class Admin extends Component {
                 'Content-type': 'application/json',
             }
         })
-        window.location.reload(true)
 
+        window.location.reload(true)
     }
 
 	handleChange = (event) => {
-        this.setState({ [event.target.name]: event.target.value })
-        console.log(this.state.participants);
-
+        this.setState({ [event.target.name]: event.target.value });
 	}
 
     render() {
 		let styling = 'hidden';
-		{this.state.changeReservationForm ? (styling += "display") : (styling = 'hidden')}
+        this.state.changeReservationForm ? styling += "display" : styling = 'hidden';
+        
         return (
 			<div>
-			<form method="POST" className={'changeForm ' +  styling}>
-				<input type="number" min="1" max="6" name="participants" placeholder="2 People" onChange={this.handleChange} />
-				<button type="submit" value="submit" onClick={this.changeReservation}>Change</button>
-			</form>
-			
-            <div className="displayBookings">
-
-                {this.state.reservations}
-
-            </div>
+                <form method="POST" className={'changeForm ' +  styling}>
+                    <input type="number" min="1" max="6" name="participants" placeholder="2 People" onChange={this.handleChange} />
+                    <button type="submit" value="submit" onClick={this.changeReservation}>Change</button>
+                </form>
+                
+                <div className="displayBookings">
+                    {this.state.reservations}
+                </div>
 			</div>
 
         );
     }
-
 
 }
 
