@@ -68,7 +68,7 @@ class Form extends Component {
 			headers:
 			{
 				'Accept': 'application/json',
-				'Content-type': ' text/plain',
+				'Content-type': 'text/plain',
 			}
 		})
 			.then((response) => {

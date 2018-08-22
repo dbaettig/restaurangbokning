@@ -3,6 +3,11 @@ import '../App.css';
 import Form from './Form';
 import Admin from './Admin';
 import Header from './Header';
+import ChangeReservationForm from './ChangeReservationForm';
+import {
+  Link,
+  Route
+} from 'react-router-dom';
 
 
 class App extends Component {
@@ -19,19 +24,25 @@ class App extends Component {
   }
 
   openAdmin = () => {
-    this.setState({admin: !this.state.admin});
+    this.setState({ admin: !this.state.admin });
   }
 
 
   render() {
     return (
-      <div className="wrapper">
-        <Header openAdmin={this.openAdmin} admin={this.state.admin}/>
-        { this.state.admin ? <Admin /> : <Form /> }
-      </div>
+      <div>
+        <div className="wrapper">
+          <Header openAdmin={this.openAdmin} admin={this.state.admin} />
+          {this.state.admin ? <Admin /> : <Form />}
+
+        </div>
+        <div>
+
+        </div>
+      </div >
     );
   }
-  
+
 }
 
 export default App;

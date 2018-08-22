@@ -11,7 +11,6 @@ $formData = JSON_decode($_GET['formData']);
 var_dump($formData);
 
 
-
 $statement = $pdo->prepare(
     "INSERT INTO reservations (participants, guestId) 
     VALUES (:participants, :guestId)"
