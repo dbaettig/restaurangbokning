@@ -3,6 +3,8 @@ import '../App.css';
 import Form from './Form';
 import Admin from './Admin';
 import Header from './Header';
+import Menu from './Menu';
+import Footer from './Footer';
 
 
 class App extends Component {
@@ -19,19 +21,21 @@ class App extends Component {
   }
 
   openAdmin = () => {
-    this.setState({admin: !this.state.admin});
+    this.setState({ admin: !this.state.admin });
   }
 
 
   render() {
     return (
       <div className="wrapper">
-        <Header openAdmin={this.openAdmin} admin={this.state.admin}/>
-        { this.state.admin ? <Admin /> : <Form /> }
+        <Header openAdmin={this.openAdmin} admin={this.state.admin} />
+        <Menu />
+        {this.state.admin ? <Admin /> : <Form />}
+        <Footer />
       </div>
     );
   }
-  
+
 }
 
 export default App;
