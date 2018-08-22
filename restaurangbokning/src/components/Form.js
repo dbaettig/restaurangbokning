@@ -18,6 +18,7 @@ class Form extends Component {
 	fetchDate = (event) => {
 		event.preventDefault();
 		let formValues = JSON.stringify(this.state);
+		console.log(this.state);
 
 		fetch('http://localhost:8888/fetchDate.php?formData=' + formValues, {
 			method: 'GET',
@@ -93,6 +94,7 @@ class Form extends Component {
 						<input type="text" name="phone" placeholder="phone number" onChange={this.handleChange} />
 						<input type="text" name="email" placeholder="email" onChange={this.handleChange} />
 						<button type="submit">BOOK</button>
+						<button onClick={(event) => {window.location.reload();}}>Cancel</button>
 					</form>
 				</div>
 				) : (
