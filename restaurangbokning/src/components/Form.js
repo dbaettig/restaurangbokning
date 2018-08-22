@@ -68,7 +68,7 @@ class Form extends Component {
 			headers:
 			{
 				'Accept': 'application/json',
-				'Content-type': 'application/json',
+				'Content-type': ' text/plain',
 			}
 		})
 			.then((response) => {
@@ -86,17 +86,17 @@ class Form extends Component {
 			<div className="formWrapper">
 
 				{this.state.showGuestForm ? (
-				<div>
-					<p>You have chosen {this.state.date}, at {this.state.chosenSitting} PM for {this.state.participants} people.</p>
-					<form method="POST" className="dateForm" onSubmit={this.postGuestAndReservation}>
-						<input type="text" name="firstName" placeholder="first name" onChange={this.handleChange} />
-						<input type="text" name="lastName" placeholder="last name" onChange={this.handleChange} />
-						<input type="text" name="phone" placeholder="phone number" onChange={this.handleChange} />
-						<input type="text" name="email" placeholder="email" onChange={this.handleChange} />
-						<button type="submit">BOOK</button>
-						<button onClick={(event) => {window.location.reload();}}>Cancel</button>
-					</form>
-				</div>
+					<div>
+						<p>You have chosen {this.state.date}, at {this.state.chosenSitting} PM for {this.state.participants} people.</p>
+						<form method="POST" className="dateForm" onSubmit={this.postGuestAndReservation}>
+							<input type="text" name="firstName" placeholder="first name" onChange={this.handleChange} />
+							<input type="text" name="lastName" placeholder="last name" onChange={this.handleChange} />
+							<input type="text" name="phone" placeholder="phone number" onChange={this.handleChange} />
+							<input type="text" name="email" placeholder="email" onChange={this.handleChange} />
+							<button type="submit">BOOK</button>
+							<button onClick={(event) => { window.location.reload(); }}>Cancel</button>
+						</form>
+					</div>
 				) : (
 						<div>
 							<form method="POST" className="dateForm" onSubmit={this.fetchDate}>
@@ -113,7 +113,7 @@ class Form extends Component {
 
 
 								) : (
-								<p>There are no available tables at 06:00 PM.</p>)
+										<p>There are no available tables at 06:00 PM.</p>)
 								}
 								{this.state.secondSitting ? (
 									<button name="chosenSitting" value="09:00:00" onClick={(event) => { this.handleChange(event); this.showGuestForm(); }}>

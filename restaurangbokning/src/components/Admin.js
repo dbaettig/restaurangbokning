@@ -59,7 +59,7 @@ class Admin extends Component {
             headers:
             {
                 'Accept': 'application/json',
-                'Content-type': 'application/json',
+                'Content-type': 'text/plain',
             }
         })
             .then((response) => {
