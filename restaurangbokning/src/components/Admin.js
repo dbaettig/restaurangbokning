@@ -10,6 +10,7 @@ class Admin extends Component {
 
     componentDidMount() {
         this.fetchReservations();
+
     }
 
     fetchReservations = () => {
@@ -19,26 +20,11 @@ class Admin extends Component {
                 this.displayReservations(data);
             })
 
-		/*const urls = [
-   'http://localhost:8888/fetchReservations.php',
-   'http://localhost:8888/fetchGuest.php'
-  ];
-
-  // use map() to perform a fetch and handle the response for each url
-  Promise.all(urls.map(url =>
-   fetch(url)
-   .then((response) => response.json())
-  ))
-  .then(data => {
-   // do something with the data
-   console.log(data)
-  })*/
-
     }
 
     displayReservations = (data) => {
-        let reservations = data.map((reservation) => 
-            <div key={reservation.resId}> 
+        let reservations = data.map((reservation) =>
+            <div key={reservation.resId}>
                 Datum: {reservation.date} {reservation.time}{reservation.participants} {reservation.firstName} ID: {reservation.resId}
                 <button name={reservation.resId} onClick={this.deleteReservation}>Delete</button>
                 <button name={reservation.resId} onClick={this.openChangeForm}>Change</button>
@@ -47,31 +33,40 @@ class Admin extends Component {
 
         this.setState({ reservations: reservations })
     }
-	
-	openChangeForm = (event) => {
+
+    // pop up div form for changing a booking in admin 
+    openChangeForm = (event) => {
         this.setState({
-            reservationId: event.target.name, 
+            reservationId: event.target.name,
             changeReservationForm: true
         });
-	}
+    }
+
+    closeChangeForm = (event) => {
+        event.preventDefault();
+        this.setState({
+            changeReservationForm: false
+        });
+    }
 
     changeReservation = (event) => {
         event.preventDefault();
         let formValues = JSON.stringify(this.state);
-        
-		fetch('http://localhost:8888/updateReservation.php?formData=' + formValues, {
-			method: 'GET',
-			headers:
-			{
-				'Accept': 'application/json',
-				'Content-type': 'application/json',
-			}
+
+        fetch('http://localhost:8888/updateReservation.php?formData=' + formValues, {
+            method: 'GET',
+            headers:
+            {
+                'Accept': 'application/json',
+                'Content-type': 'application/json',
+            }
         })
-        .then((response) => {
-				console.log(response);
-        })
-            
-        window.location.reload(true)
+            .then((response) => {
+                console.log(response);
+            })
+
+        this.closeChangeForm(event);
+        this.fetchReservations();
     }
 
     deleteReservation = (event) => {
@@ -87,25 +82,26 @@ class Admin extends Component {
         window.location.reload(true)
     }
 
-	handleChange = (event) => {
+    handleChange = (event) => {
         this.setState({ [event.target.name]: event.target.value });
-	}
+    }
 
     render() {
-		let styling = 'hidden';
+        let styling = 'hidden';
         this.state.changeReservationForm ? styling += "display" : styling = 'hidden';
-        
+
         return (
-			<div>
-                <form method="POST" className={'changeForm ' +  styling}>
+            <div>
+                <form className={'changeForm ' + styling}>
                     <input type="number" min="1" max="6" name="participants" placeholder="2 People" onChange={this.handleChange} />
                     <button type="submit" value="submit" onClick={this.changeReservation}>Change</button>
+                    <button onClick={this.closeChangeForm}>Cancel</button>
                 </form>
-                
+
                 <div className="displayBookings">
                     {this.state.reservations}
                 </div>
-			</div>
+            </div>
 
         );
     }
