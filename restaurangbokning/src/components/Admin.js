@@ -47,6 +47,7 @@ class Admin extends Component {
         this.setState({
             changeReservationForm: false
         });
+        this.fetchReservations();
     }
 
     changeReservation = (event) => {
@@ -66,7 +67,7 @@ class Admin extends Component {
             })
 
         this.closeChangeForm(event);
-        this.fetchReservations();
+
     }
 
     deleteReservation = (event) => {
