@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {
     Link,
-    Route
+    Route,
+	Redirect
 } from 'react-router-dom';
 import ChangeReservationForm from './ChangeReservationForm';
 
@@ -34,7 +35,7 @@ class Admin extends Component {
             <div key={reservation.resId}>
                 Datum: {reservation.date} {reservation.time}{reservation.participants} {reservation.firstName} ID: {reservation.resId}
                 <button name={reservation.resId} onClick={this.deleteReservation}>Delete</button>
-                <button name={reservation.resId} onClick={this.openChangeForm}>Change</button>
+                <button name={reservation.resId} onClick={this.openChangeForm}>Change</button> 
             </div>
         );
 
@@ -76,7 +77,7 @@ class Admin extends Component {
 			
             })
 
-        //sedn to /admin url
+        window.location.assign("/admin");
     }
 
     deleteReservation = (event) => {
@@ -102,10 +103,10 @@ class Admin extends Component {
 
         return (
             <div>
-                {this.state.changeReservationForm ? <ChangeReservationForm handleChange={this.handleChange} changeReservation={this.changeReservation} closeChangeForm={this.closeChangeForm} /> :
+                {this.state.changeReservationForm ? 
+					 <ChangeReservationForm handleChange={this.handleChange} changeReservation={this.changeReservation} closeChangeForm={this.closeChangeForm} /> :
 
                     <div className="displayBookings">
-
                         {this.state.reservations}
                     </div>
 

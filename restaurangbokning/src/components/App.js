@@ -37,18 +37,10 @@ class App extends Component {
    			<Switch>
 			  <Route exact path="/admin" component={Admin}/>
 			  <Route exact path="/guest" component={Guest}/>
+			  <Route exact path="/changeReservationForm" component={ChangeReservationForm}/>
 			</Switch>
-
         </div>
 		
-			
-       
-		<div>
-		<ul>
-		  <li> <Link to="/admin">ADMIN</Link> </li>
-		  <li> <Link to="/guest">GUEST</Link> </li>
-		</ul>
-		</div>
       </div >
     );
   }

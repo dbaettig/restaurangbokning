@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import '../App.css';
+import {
+  Link,
+  Route,
+  Switch
+} from 'react-router-dom';
 
 class Header extends Component {
 
@@ -7,9 +12,14 @@ class Header extends Component {
         return (
 
             <div>
-                <button className="adminButton" onClick={this.props.openAdmin}>{this.props.admin ? "Guest" : "Admin"}</button>
-				
-                <header><h2>BOKA BORD</h2>
+                <div>
+					<ul>
+					  <li> <Link to="/admin">ADMIN</Link> </li>
+					  <li> <Link to="/guest">GUEST</Link> </li>
+					</ul>
+				</div>
+                <header>
+					<h2>BOKA BORD</h2>
                 </header>
             </div>
         )
