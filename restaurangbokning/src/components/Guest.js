@@ -30,8 +30,6 @@ class Guest extends Component {
 		})
 			.then((response) => response.json())
 			.then((time) => {
-				//this.setState({response: time});
-				//this.countReservations(this.state.response);
 				this.countReservations(time);
 			})
 	}

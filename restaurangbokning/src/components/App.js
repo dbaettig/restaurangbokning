@@ -16,11 +16,11 @@ class App extends Component {
     
   }
 
-  fetchGuest = () => {
-    fetch('http://localhost:8888/fetchGuest.php')
+  fetchGuests = () => {
+    fetch('http://localhost:8888/fetchGuests.php')
       .then((response) => response.json())
-      .then((guest) => {
-        this.setState({ guest: guest[0] });
+      .then((guests) => {
+        console.log(guests);
       })
   }
 
@@ -29,11 +29,11 @@ class App extends Component {
       <div>
         <div className="wrapper">
           <Header />
-   			<Switch>
-			  <Route exact path="/admin" component={Admin}/>
-			  <Route exact path="/" component={Guest}/>
-			  <Route exact path="/changeReservationForm" component={ChangeReservationForm}/>
-			</Switch>
+        <Switch>
+          <Route exact path="/admin" component={Admin}/>
+          <Route exact path="/" component={Guest}/>
+          <Route exact path="/changeReservationForm" component={ChangeReservationForm}/>
+        </Switch>
         </div>
 		
       </div >

@@ -16,18 +16,15 @@ class Admin extends Component {
     }
 
     componentDidMount() {
-        this.fetchReservations();
-        console.log('hej')
-
+        this.fetchReservationsAndGuest();
     }
 
-    fetchReservations = () => {
-        fetch('http://localhost:8888/fetchReservations.php')
+    fetchReservationsAndGuest = () => {
+        fetch('http://localhost:8888/fetchReservationsAndGuest.php')
             .then((response) => response.json())
             .then((data) => {
                 this.displayReservations(data);
             })
-
     }
 
     displayReservations = (data) => {
@@ -60,7 +57,7 @@ class Admin extends Component {
     changeReservation = (event) => {
         event.preventDefault();
         let formValues = JSON.stringify(this.state);
-        fetch('http://localhost:8888/updateReservation.php?formData=' + formValues, {
+        fetch('http://localhost:8888/changeReservation.php?formData=' + formValues, {
             method: 'GET',
             headers:
             {
