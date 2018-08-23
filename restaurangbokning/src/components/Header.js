@@ -15,7 +15,7 @@ class Header extends Component {
                 <div>
 					<ul>
 					  <li> <Link to="/admin">ADMIN</Link> </li>
-					  <li> <Link to="/guest">GUEST</Link> </li>
+					  <li> <Link to="/">GUEST</Link> </li>
 					</ul>
 				</div>
                 <header>

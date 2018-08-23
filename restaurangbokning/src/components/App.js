@@ -13,7 +13,7 @@ import {
 
 class App extends Component {
   state = {
-    admin: false
+    
   }
 
   fetchGuest = () => {
@@ -24,19 +24,14 @@ class App extends Component {
       })
   }
 
-  openAdmin = () => {
-    this.setState({ admin: !this.state.admin });
-  }
-
-
   render() {
     return (
       <div>
         <div className="wrapper">
-          <Header openAdmin={this.openAdmin} admin={this.state.admin} />
+          <Header />
    			<Switch>
 			  <Route exact path="/admin" component={Admin}/>
-			  <Route exact path="/guest" component={Guest}/>
+			  <Route exact path="/" component={Guest}/>
 			  <Route exact path="/changeReservationForm" component={ChangeReservationForm}/>
 			</Switch>
         </div>

@@ -38,11 +38,10 @@ class Admin extends Component {
                 <button name={reservation.resId} onClick={this.openChangeForm}>Change</button> 
             </div>
         );
-
         this.setState({ reservations: reservations })
     }
 
-    // pop up div form for changing a booking in admin 
+    // Form for changing a booking in admin 
     openChangeForm = (event) => {
         this.setState({
             reservationId: event.target.name,
@@ -56,14 +55,11 @@ class Admin extends Component {
         this.setState({
             changeReservationForm: false
         });
-        //this.fetchReservations();
     }
 
     changeReservation = (event) => {
         event.preventDefault();
-        console.log('skicka ändringar');
         let formValues = JSON.stringify(this.state);
-
         fetch('http://localhost:8888/updateReservation.php?formData=' + formValues, {
             method: 'GET',
             headers:
@@ -73,15 +69,13 @@ class Admin extends Component {
             }
         })
             .then((response) => {
-                console.log("hejsan");
-			
+				console.log(response);
             })
-
+		//Redirect back to admin page.
         window.location.assign("/admin");
     }
 
     deleteReservation = (event) => {
-        console.log('delete');
         fetch('http://localhost:8888/deleteReservation.php?formData=' + event.target.name, {
             method: 'GET',
             headers:
@@ -90,35 +84,25 @@ class Admin extends Component {
                 'Content-type': 'application/json',
             }
         })
-
-
+		window.location.assign("/admin");
     }
 
     handleChange = (event) => {
-        console.log(event.target.name);
         this.setState({ [event.target.name]: event.target.value });
     }
 
     render() {
-
         return (
             <div>
                 {this.state.changeReservationForm ? 
 					 <ChangeReservationForm handleChange={this.handleChange} changeReservation={this.changeReservation} closeChangeForm={this.closeChangeForm} /> :
-
                     <div className="displayBookings">
                         {this.state.reservations}
                     </div>
-
                 }
-                {/* <Route path="/admin" component={Admin} />
-                    <Link to="/admin">ADMIN</Link> */}
             </div>
-
         );
     }
-
 }
-
 
 export default Admin;
