@@ -8,6 +8,7 @@ class Header extends Component {
 
             <div>
                 <button className="adminButton" onClick={this.props.openAdmin}>{this.props.admin ? "Guest" : "Admin"}</button>
+				
                 <header><h2>BOKA BORD</h2>
                 </header>
             </div>

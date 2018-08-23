@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import '../App.css';
 
 class ChangeReservationForm extends Component {
-
+	
     render() {
         return (
-
             <div>
                 <form>
                     <input type="number" min="1" max="6" name="participants" placeholder="2 People" onChange={this.props.handleChange} />
@@ -15,7 +14,6 @@ class ChangeReservationForm extends Component {
                 </form>
             </div>
         )
-
     }
 }
 

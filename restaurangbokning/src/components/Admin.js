@@ -72,7 +72,8 @@ class Admin extends Component {
             }
         })
             .then((response) => {
-                console.log(response);
+                console.log("hejsan");
+			
             })
 
         //sedn to /admin url

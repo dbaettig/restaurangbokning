@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import '../App.css';
-import Form from './Form';
+import Guest from './Guest';
 import Admin from './Admin';
 import Header from './Header';
 import ChangeReservationForm from './ChangeReservationForm';
 import {
   Link,
-  Route
+  Route,
+  Switch
 } from 'react-router-dom';
 
 
@@ -33,12 +34,21 @@ class App extends Component {
       <div>
         <div className="wrapper">
           <Header openAdmin={this.openAdmin} admin={this.state.admin} />
-          {this.state.admin ? <Admin /> : <Form />}
+   			<Switch>
+			  <Route exact path="/admin" component={Admin}/>
+			  <Route exact path="/guest" component={Guest}/>
+			</Switch>
 
         </div>
-        <div>
-
-        </div>
+		
+			
+       
+		<div>
+		<ul>
+		  <li> <Link to="/admin">ADMIN</Link> </li>
+		  <li> <Link to="/guest">GUEST</Link> </li>
+		</ul>
+		</div>
       </div >
     );
   }

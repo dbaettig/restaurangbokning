@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Form extends Component {
+class Guest extends Component {
 	state = {
 		date: "",
 		participants: "",
@@ -133,4 +133,4 @@ class Form extends Component {
 	}
 }
 
-export default Form;
+export default Guest;
