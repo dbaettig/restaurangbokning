@@ -99,7 +99,7 @@ class Admin extends Component {
         return (
             <div>
                 {this.state.changeReservationForm ? 
-					 <ChangeReservationForm handleChange={this.handleChange} changeReservation={this.changeReservation} closeChangeForm={this.closeChangeForm} /> :
+					<ChangeReservationForm handleChange={this.handleChange} changeReservation={this.changeReservation} closeChangeForm={this.closeChangeForm} /> :
                     <div className="displayBookings">
                         {this.state.reservations}
                     </div>
