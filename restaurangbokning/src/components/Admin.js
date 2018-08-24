@@ -1,9 +1,4 @@
 import React, { Component } from 'react';
-import {
-    Link,
-    Route,
-	Redirect
-} from 'react-router-dom';
 import ChangeReservationForm from './ChangeReservationForm';
 
 
@@ -24,9 +19,8 @@ class Admin extends Component {
             .then((response) => response.json())
             .then((data) => {
                 this.displayReservations(data);
-            }).catch(function() {
-        console.log("error");
-			});
+            })
+            .catch(error => this.props.openErrorMessage());
     }
 
     displayReservations = (data) => {
@@ -58,7 +52,7 @@ class Admin extends Component {
     changeReservation = (event) => {
         event.preventDefault();
         let formValues = JSON.stringify(this.state);
-        fetch('http://localhost:8888/changeReservation.php?formData=' + formValues, {
+        fetch('http://localhost:8888/changesReservation.php?formData=' + formValues, {
             method: 'GET',
             headers:
             {
@@ -69,9 +63,7 @@ class Admin extends Component {
             .then((response) => {
 				console.log(response);
             })
-			.catch(function() {
-        console.log("error");
-			});
+            .catch(error => this.props.openErrorMessage());
 		//Redirect back to admin page.
         window.location.assign("/admin");
     }
@@ -85,9 +77,7 @@ class Admin extends Component {
                 'Content-type': 'application/json',
             }
         })
-			.catch(function() {
-        console.log("error");
-			});
+        .catch(error => this.props.openErrorMessage());
 		window.location.assign("/admin");
     }
 
@@ -99,7 +89,7 @@ class Admin extends Component {
         return (
             <div>
                 {this.state.changeReservationForm ? 
-					<ChangeReservationForm handleChange={this.handleChange} changeReservation={this.changeReservation} closeChangeForm={this.closeChangeForm} /> :
+					<ChangeReservationForm handleChange={this.handleChange} changeReservation={this.changeReservation} closeChangeForm={this.closeChangeForm}/> :
                     <div className="displayBookings">
                         {this.state.reservations}
                     </div>

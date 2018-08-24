@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
 import {
-  Link,
-  Route,
-  Switch
+  Link
 } from 'react-router-dom';
 
 class Header extends Component {

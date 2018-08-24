@@ -3,9 +3,9 @@ import '../App.css';
 import Guest from './Guest';
 import Admin from './Admin';
 import Header from './Header';
+import ErrorMessage from './ErrorMessage';
 import ChangeReservationForm from './ChangeReservationForm';
 import {
-  Link,
   Route,
   Switch
 } from 'react-router-dom';
@@ -13,8 +13,14 @@ import {
 
 class App extends Component {
   state = {
-    
+    errorMessage: false
   }
+
+  openErrorMessage = () => {
+    console.log('openerror works');
+    this.setState({errorMessage: true});
+  }
+
 
   fetchGuests = () => {
     fetch('http://localhost:8888/fetchGuests.php')
@@ -28,11 +34,12 @@ class App extends Component {
     return (
       <div>
         <div className="wrapper">
-          <Header />
+          <Header openErrorMessage={this.openErrorMessage}/>
+          {this.state.errorMessage ? <ErrorMessage /> : ( null ) }
         <Switch>
-          <Route exact path="/admin" component={Admin}/>
-          <Route exact path="/" component={Guest}/>
-          <Route exact path="/changeReservationForm" component={ChangeReservationForm}/>
+          <Route exact path="/admin" render={(props) => <Admin {...props} openErrorMessage={this.openErrorMessage}/>}/>
+          <Route exact path="/" render={(props) => <Guest {...props} openErrorMessage={this.openErrorMessage}/>} openErrorMessage={this.openErrorMessage}/>
+          <Route exact path="/changeReservationForm" component={ChangeReservationForm} openErrorMessage={this.openErrorMessage}/>
         </Switch>
         </div>
 		
