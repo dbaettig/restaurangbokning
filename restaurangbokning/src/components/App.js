@@ -16,9 +16,9 @@ class App extends Component {
     errorMessage: false
   }
 
-  openErrorMessage = () => {
+  handleErrorMessage = () => {
     console.log('openerror works');
-    this.setState({errorMessage: true});
+    this.setState({errorMessage: !this.state.errorMessage});
   }
 
 
@@ -34,15 +34,16 @@ class App extends Component {
     return (
       <div>
         <div className="wrapper">
-          <Header openErrorMessage={this.openErrorMessage}/>
-          {this.state.errorMessage ? <ErrorMessage /> : ( null ) }
-        <Switch>
-          <Route exact path="/admin" render={(props) => <Admin {...props} openErrorMessage={this.openErrorMessage}/>}/>
-          <Route exact path="/" render={(props) => <Guest {...props} openErrorMessage={this.openErrorMessage}/>} openErrorMessage={this.openErrorMessage}/>
-          <Route exact path="/changeReservationForm" component={ChangeReservationForm} openErrorMessage={this.openErrorMessage}/>
-        </Switch>
+			  <Header />
+			  {this.state.errorMessage ? 
+				<ErrorMessage handleErrorMessage={this.handleErrorMessage}/> : ( null ) 
+			  }
+			<Switch>
+				  <Route exact path="/admin" render={(props) => <Admin {...props} handleErrorMessage={this.handleErrorMessage}/>}/>
+				  <Route exact path="/" render={(props) => <Guest {...props} handleErrorMessage={this.handleErrorMessage}/>} handleErrorMessage={this.handleErrorMessage}/>
+				  <Route exact path="/changeReservationForm" component={ChangeReservationForm}/>
+			</Switch>
         </div>
-		
       </div >
     );
   }

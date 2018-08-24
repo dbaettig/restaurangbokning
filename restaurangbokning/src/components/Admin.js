@@ -20,7 +20,7 @@ class Admin extends Component {
             .then((data) => {
                 this.displayReservations(data);
             })
-            .catch(error => this.props.openErrorMessage());
+            .catch(error => this.props.handleErrorMessage());
     }
 
     displayReservations = (data) => {
@@ -52,7 +52,7 @@ class Admin extends Component {
     changeReservation = (event) => {
         event.preventDefault();
         let formValues = JSON.stringify(this.state);
-        fetch('http://localhost:8888/changesReservation.php?formData=' + formValues, {
+        fetch('http://localhost:8888/changeR!!!eservation.php?formData=' + formValues, {
             method: 'GET',
             headers:
             {
@@ -62,10 +62,10 @@ class Admin extends Component {
         })
             .then((response) => {
 				console.log(response);
+        		window.location.assign("/admin");
             })
-            .catch(error => this.props.openErrorMessage());
+            .catch(error => this.props.handleErrorMessage());
 		//Redirect back to admin page.
-        window.location.assign("/admin");
     }
 
     deleteReservation = (event) => {
@@ -77,7 +77,7 @@ class Admin extends Component {
                 'Content-type': 'application/json',
             }
         })
-        .catch(error => this.props.openErrorMessage());
+        .catch(error => this.props.handleErrorMessage());
 		window.location.assign("/admin");
     }
 

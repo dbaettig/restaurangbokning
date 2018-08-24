@@ -36,7 +36,7 @@ class Guest extends Component {
 				this.countReservations(time);
 				this.setState({buttonStyle: true});
 			})
-			.catch(error => this.props.openErrorMessage());
+			.catch(error => this.props.handleErrorMessage());
 		
 	}
 
@@ -79,7 +79,7 @@ class Guest extends Component {
 			console.log(guestId);
 			this.checkIfIdExists(guestId);
 		})
-        .catch(error => this.props.openErrorMessage());
+        .catch(error => this.props.handleErrorMessage());
 
 	}
 
@@ -109,7 +109,7 @@ class Guest extends Component {
 			.then((response) => {
 				console.log(response);
 			})
-			.catch(error => this.props.openErrorMessage());
+			.catch(error => this.props.handleErrorMessage());
 
 		this.setState({showConfirmation: true});
 	}
@@ -128,7 +128,7 @@ class Guest extends Component {
 			.then((response) => {
 				console.log(response);
 			})
-			.catch(error => this.props.openErrorMessage());
+			.catch(error => this.props.handleErrorMessage());
 			
 		this.setState({showConfirmation: true});
 	}
