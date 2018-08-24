@@ -24,7 +24,9 @@ class Admin extends Component {
             .then((response) => response.json())
             .then((data) => {
                 this.displayReservations(data);
-            })
+            }).catch(function() {
+        console.log("error");
+			});
     }
 
     displayReservations = (data) => {
@@ -48,7 +50,6 @@ class Admin extends Component {
 
     closeChangeForm = (event) => {
         event.preventDefault();
-        console.log('close');
         this.setState({
             changeReservationForm: false
         });
@@ -68,6 +69,9 @@ class Admin extends Component {
             .then((response) => {
 				console.log(response);
             })
+			.catch(function() {
+        console.log("error");
+			});
 		//Redirect back to admin page.
         window.location.assign("/admin");
     }
@@ -81,6 +85,9 @@ class Admin extends Component {
                 'Content-type': 'application/json',
             }
         })
+			.catch(function() {
+        console.log("error");
+			});
 		window.location.assign("/admin");
     }
 

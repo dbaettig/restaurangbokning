@@ -35,6 +35,9 @@ class Guest extends Component {
 				this.countReservations(time);
 				this.setState({buttonStyle: true});
 			})
+			.catch(function() {
+				alert("Something wnt wrong. Please try again!");
+			});
 		
 	}
 
@@ -76,6 +79,9 @@ class Guest extends Component {
 			.then((response) => {
 				console.log(response);
 			})
+			.catch(function() {
+				console.log("error");
+			});
 		this.setState({showConfirmation: true});
 	}
 
@@ -95,12 +101,15 @@ class Guest extends Component {
 					<div>
 						{this.state.showConfirmation ? (
 								<div>
-									<p>Thank you for your reservation {this.state.firstName} {this.state.lastName}. By clicking confirm you agree that we can store your personal information regarding your booking.<br /> You have booked {this.state.date}, at {this.state.chosenSitting} PM for {this.state.participants} people. </p>
-									<button onClick={(event) => { window.location.assign("/"); }}>Confirm</button>
+									<p>Thank you for your reservation {this.state.firstName} {this.state.lastName}. You have booked {this.state.date}, at {this.state.chosenSitting} PM for {this.state.participants} people. </p>
+									<button onClick={(event) => { window.location.assign("/"); }}>Ok</button>
 								</div>
 							 ):(
 								<div>
-									<p>You have chosen {this.state.date}, at {this.state.chosenSitting} PM for {this.state.participants} people.</p>
+								 	<div>
+										<p>You have chosen {this.state.date}, at {this.state.chosenSitting} PM for {this.state.participants} people.</p>
+										<p>By entering your personal information you agree that we can store data regarding your booking.</p>
+								 	</div>
 
 									<form method="POST" className="dateForm" onSubmit={this.postGuestAndReservation}>
 										<input type="text" name="firstName" placeholder="first name" onChange={this.handleChange} />
@@ -108,8 +117,8 @@ class Guest extends Component {
 										<input type="text" name="phone" placeholder="phone number" onChange={this.handleChange} />
 										<input type="text" name="email" placeholder="email" onChange={this.handleChange} />
 										<button type="submit">BOOK</button>
-										<button onClick={(event) => { window.location.reload(); }}>Cancel</button>
 									</form>
+								 	<button onClick={(event) => { window.location.assign("/"); }}>Cancel</button>
 								</div>
 							)}
 					</div>
