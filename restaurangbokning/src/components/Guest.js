@@ -11,6 +11,7 @@ class Guest extends Component {
 		chosenSitting: "",
 		showGuestForm: false,
 		showConfirmation: false,
+		guestId: "",
 		firstName: "",
 		lastName: "",
 		phone: "",
@@ -61,10 +62,57 @@ class Guest extends Component {
 		})
 	}
 
-	postGuestAndReservation = (event) => {
+	fetchGuestId = (event) => {
 		event.preventDefault();
 		let formValues = JSON.stringify(this.state);
-		console.log(formValues);
+		fetch('http://localhost:8888/fetchGuestId.php?formData=' + formValues, {
+			method: 'GET',
+			headers:
+			{
+				'Accept': 'application/json',
+				'Content-type': 'text/plain',
+			}
+		})
+		.then((response) => response.json())
+		.then((guestId) => {
+			console.log(guestId);
+			this.checkIfIdExists(guestId);
+		})
+
+	}
+
+	checkIfIdExists = (guestId) => {
+		console.log('check if id');
+		if(guestId.length == 0){
+			this.postGuestAndReservation();
+		}
+		else {
+			this.setState({guestId: guestId[0].id});
+			this.postReservation();
+		}
+
+	}
+
+	postReservation = () => {
+		let formValues = JSON.stringify(this.state);
+		console.log('user existed');
+		fetch('http://localhost:8888/postReservation.php?formData=' + formValues, {
+			method: 'GET',
+			headers:
+			{
+				'Accept': 'application/json',
+				'Content-type': 'text/plain',
+			}
+		})
+			.then((response) => {
+				console.log(response);
+			})
+		this.setState({showConfirmation: true});
+	}
+
+	postGuestAndReservation = () => {
+		let formValues = JSON.stringify(this.state);
+		console.log('create new user');
 		fetch('http://localhost:8888/postGuestAndReservation.php?formData=' + formValues, {
 			method: 'GET',
 			headers:
@@ -98,11 +146,11 @@ class Guest extends Component {
 									<p>Thank you for your reservation {this.state.firstName} {this.state.lastName}. By clicking confirm you agree that we can store your personal information regarding your booking.<br /> You have booked {this.state.date}, at {this.state.chosenSitting} PM for {this.state.participants} people. </p>
 									<button onClick={(event) => { window.location.assign("/"); }}>Confirm</button>
 								</div>
-							 ):(
+							):(
 								<div>
 									<p>You have chosen {this.state.date}, at {this.state.chosenSitting} PM for {this.state.participants} people.</p>
 
-									<form method="POST" className="dateForm" onSubmit={this.postGuestAndReservation}>
+									<form method="POST" className="dateForm" onSubmit={this.fetchGuestId}>
 										<input type="text" name="firstName" placeholder="first name" onChange={this.handleChange} />
 										<input type="text" name="lastName" placeholder="last name" onChange={this.handleChange} />
 										<input type="text" name="phone" placeholder="phone number" onChange={this.handleChange} />
