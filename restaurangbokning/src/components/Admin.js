@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import ChangeReservationForm from './ChangeReservationForm';
+import ChangeGuestForm from './ChangeGuestForm';
 
 
 class Admin extends Component {
     state = {
         changeReservationForm: false,
 		changeGuestForm: false,
-        reservations: [],
+        reservation: [],
+		reservations: [],
         reservationId: "",
         participants: "",
+		firstName: ""
 		
     }
 
@@ -34,7 +37,7 @@ class Admin extends Component {
                 Datum: {reservation.date} {reservation.time}{reservation.participants} {reservation.firstName} ID: {reservation.resId}
                 <button name={reservation.resId} onClick={this.deleteReservation}>Delete</button>
                 <button name={reservation.resId} onClick={this.openChangeReservationForm}>Change reservation</button> 
-				<button name={reservation.id} onClick={this.openChangeGuestForm}>Change guest info</button> 
+				<button onClick={() => {this.openChangeGuestForm(reservation)}}>Change guest info</button> 
             </div>
         );
         this.setState({ reservations: reservations })
@@ -47,11 +50,15 @@ class Admin extends Component {
             changeReservationForm: true
         });
     }
-	 openChangeGuestForm = (event) => {
+	
+	 openChangeGuestForm = (reservation) => {
         this.setState({
-            guestId: event.target.name,
-            changeGuestForm: true
+            changeGuestForm: true,
+			reservation: reservation,
+			firstName: reservation.firstName
         });
+		 console.log(this.state);
+		 
     }
 
     closeChangeReservationForm = (event) => {
@@ -63,7 +70,7 @@ class Admin extends Component {
 	closeChangeGuestForm = (event) => {
         event.preventDefault();
         this.setState({
-            changeGuestForm: false
+            changeGuestsForm: false
         });
     }
 
@@ -106,12 +113,32 @@ class Admin extends Component {
     render() {
         return (
             <div>
+			
+			
+			{this.state.changeReservationForm && <ChangeReservationForm handleChange={this.handleChange} changeReservation={this.changeReservation} closeChangeReservationForm={this.closeChangeReservationForm} />}
+			{this.state.changeGuestForm && <ChangeGuestForm handleChange={this.handleChange} closeChangeGuestForm={this.closeChangeGuestForm}/>}
+			
+			{!this.state.changeReservationForm && !this.state.changeGuestForm && <div className="displayBookings">
+                        {this.state.reservations}
+             </div>}
+			
+				{/* if(this.state.changeReservationForm){
+					<ChangeReservationForm handleChange={this.handleChange} changeReservation={this.changeReservation} closeChangeReservationForm={this.closeChangeReservationForm}/>
+				} else if(this.state.changeGuestForm){
+				 	<ChangeGuestForm handleChange={this.handleChange} closeChangeGuestForm={this.closeChangeGuestForm}/>
+				}
+			}
+		
+			
                 {this.state.changeReservationForm ? 
 					<ChangeReservationForm handleChange={this.handleChange} changeReservation={this.changeReservation} closeChangeReservationForm={this.closeChangeReservationForm}/> :
                     <div className="displayBookings">
                         {this.state.reservations}
                     </div>
-                }
+                */ }
+			
+			
+			
             </div>
         );
     }

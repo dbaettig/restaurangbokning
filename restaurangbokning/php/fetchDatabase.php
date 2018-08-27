@@ -1,7 +1,7 @@
 <?php
 // Database connection
 $pdo = new PDO(
-    "mysql:host=localhost:8889;dbname=Restaurangbokning;charset=utf8",
+    "mysql:host=localhost;dbname=Restaurangbokning;charset=utf8",
     "root",
     "root"
 );

@@ -25,7 +25,6 @@ class App extends Component {
     this.setState({errorMessage: !this.state.errorMessage});
   }
   handleLoader = () => {
-	  console.log("laddar sidan")
    this.setState({loader: !this.state.loader})
   }
 
