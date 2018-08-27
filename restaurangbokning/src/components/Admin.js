@@ -11,7 +11,10 @@ class Admin extends Component {
 		reservations: [],
         reservationId: "",
         participants: "",
-		firstName: ""
+		firstName: "",
+		lastName: "",
+		phone: "",
+		email: ""
 		
     }
 
@@ -116,7 +119,8 @@ class Admin extends Component {
 			
 			
 			{this.state.changeReservationForm && <ChangeReservationForm handleChange={this.handleChange} changeReservation={this.changeReservation} closeChangeReservationForm={this.closeChangeReservationForm} />}
-			{this.state.changeGuestForm && <ChangeGuestForm handleChange={this.handleChange} closeChangeGuestForm={this.closeChangeGuestForm}/>}
+			
+			{this.state.changeGuestForm && <ChangeGuestForm handleChange={this.handleChange} state={this.state.reservation} closeChangeGuestForm={this.closeChangeGuestForm}/>}
 			
 			{!this.state.changeReservationForm && !this.state.changeGuestForm && <div className="displayBookings">
                         {this.state.reservations}
