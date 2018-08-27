@@ -67,6 +67,7 @@ class Guest extends Component {
 
 	fetchGuestId = (event) => {
 		event.preventDefault();
+		this.props.handleLoader();
 		let formValues = JSON.stringify(this.state);
 		fetch('http://localhost:8888/fetchGuestId.php?formData=' + formValues, {
 			method: 'GET',
@@ -78,6 +79,7 @@ class Guest extends Component {
 		})
 		.then((response) => response.json())
 		.then((guestId) => {
+			this.props.handleLoader();
 			console.log(guestId);
 			this.checkIfIdExists(guestId);
 		})
@@ -98,6 +100,7 @@ class Guest extends Component {
 	}
 
 	postReservation = () => {
+		this.props.handleLoader();
 		let formValues = JSON.stringify(this.state);
 		console.log('user existed');
 		fetch('http://localhost:8888/postReservation.php?formData=' + formValues, {
@@ -109,6 +112,7 @@ class Guest extends Component {
 			}
 		})
 			.then((response) => {
+				this.props.handleLoader();
 				console.log(response);
 			})
 			.catch(error => this.props.handleErrorMessage());
@@ -117,6 +121,7 @@ class Guest extends Component {
 	}
 
 	postGuestAndReservation = () => {
+		this.props.handleLoader();
 		let formValues = JSON.stringify(this.state);
 		console.log('create new user');
 		fetch('http://localhost:8888/postGuestAndReservation.php?formData=' + formValues, {
@@ -128,6 +133,7 @@ class Guest extends Component {
 			}
 		})
 			.then((response) => {
+				this.props.handleLoader();
 				console.log(response);
 			})
 			.catch(error => this.props.handleErrorMessage());
