@@ -5,9 +5,11 @@ import ChangeReservationForm from './ChangeReservationForm';
 class Admin extends Component {
     state = {
         changeReservationForm: false,
+		changeGuestForm: false,
         reservations: [],
         reservationId: "",
-        participants: ""
+        participants: "",
+		
     }
 
     componentDidMount() {
@@ -31,31 +33,44 @@ class Admin extends Component {
             <div key={reservation.resId}>
                 Datum: {reservation.date} {reservation.time}{reservation.participants} {reservation.firstName} ID: {reservation.resId}
                 <button name={reservation.resId} onClick={this.deleteReservation}>Delete</button>
-                <button name={reservation.resId} onClick={this.openChangeForm}>Change</button> 
+                <button name={reservation.resId} onClick={this.openChangeReservationForm}>Change reservation</button> 
+				<button name={reservation.id} onClick={this.openChangeGuestForm}>Change guest info</button> 
             </div>
         );
         this.setState({ reservations: reservations })
     }
 
     // Form for changing a booking in admin 
-    openChangeForm = (event) => {
+    openChangeReservationForm = (event) => {
         this.setState({
             reservationId: event.target.name,
             changeReservationForm: true
         });
     }
+	 openChangeGuestForm = (event) => {
+        this.setState({
+            guestId: event.target.name,
+            changeGuestForm: true
+        });
+    }
 
-    closeChangeForm = (event) => {
+    closeChangeReservationForm = (event) => {
         event.preventDefault();
         this.setState({
             changeReservationForm: false
+        });
+    }
+	closeChangeGuestForm = (event) => {
+        event.preventDefault();
+        this.setState({
+            changeGuestForm: false
         });
     }
 
     changeReservation = (event) => {
         event.preventDefault();
         let formValues = JSON.stringify(this.state);
-        fetch('http://localhost:8888/changeR!!!eservation.php?formData=' + formValues, {
+        fetch('http://localhost:8888/changeReservation.php?formData=' + formValues, {
             method: 'GET',
             headers:
             {
@@ -92,7 +107,7 @@ class Admin extends Component {
         return (
             <div>
                 {this.state.changeReservationForm ? 
-					<ChangeReservationForm handleChange={this.handleChange} changeReservation={this.changeReservation} closeChangeForm={this.closeChangeForm}/> :
+					<ChangeReservationForm handleChange={this.handleChange} changeReservation={this.changeReservation} closeChangeReservationForm={this.closeChangeReservationForm}/> :
                     <div className="displayBookings">
                         {this.state.reservations}
                     </div>

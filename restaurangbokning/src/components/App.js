@@ -5,6 +5,7 @@ import Admin from './Admin';
 import Header from './Header';
 import ErrorMessage from './ErrorMessage';
 import ChangeReservationForm from './ChangeReservationForm';
+import ChangeGuestForm from './ChangeGuestForm';
 import {
   Route,
   Switch
@@ -24,7 +25,7 @@ class App extends Component {
     this.setState({errorMessage: !this.state.errorMessage});
   }
   handleLoader = () => {
-
+	  console.log("laddar sidan")
    this.setState({loader: !this.state.loader})
   }
 
@@ -53,6 +54,7 @@ class App extends Component {
 				  <Route exact path="/admin" render={(props) => <Admin {...props} handleErrorMessage={this.handleErrorMessage} handleLoader={this.handleLoader}/>}/>
 				  <Route exact path="/" render={(props) => <Guest {...props} handleErrorMessage={this.handleErrorMessage}/>} handleErrorMessage={this.handleErrorMessage}/>
 				  <Route exact path="/changeReservationForm" component={ChangeReservationForm}/>
+				  <Route exact path="/changeGuestForm" component={ChangeGuestForm}/>
 			</Switch>
         </div>
       </div >
