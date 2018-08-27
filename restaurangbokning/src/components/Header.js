@@ -3,8 +3,10 @@ import '../App.css';
 import {
   Link
 } from 'react-router-dom';
+import ReactLoading from 'react-loading';
 
 class Header extends Component {
+
 
     render() {
         return (
@@ -18,8 +20,10 @@ class Header extends Component {
 				</div>
                 <header>
 					<h2>BOKA BORD</h2>
-                </header>
+                </header>          
+                
             </div>
+            
         )
 
     }

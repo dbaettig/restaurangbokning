@@ -10,15 +10,22 @@ import {
   Switch
 } from 'react-router-dom';
 
+import ReactLoading from 'react-loading';
+
 
 class App extends Component {
   state = {
-    errorMessage: false
+    errorMessage: false,
+    loader: false
   }
 
   handleErrorMessage = () => {
     console.log('openerror works');
     this.setState({errorMessage: !this.state.errorMessage});
+  }
+  handleLoader = () => {
+
+   this.setState({loader: !this.state.loader})
   }
 
 
@@ -37,9 +44,13 @@ class App extends Component {
 			  <Header />
 			  {this.state.errorMessage ? 
 				<ErrorMessage handleErrorMessage={this.handleErrorMessage}/> : ( null ) 
-			  }
+        }
+        
+        {this.state.loader ? 	<div className='loader'>
+        <ReactLoading type={'bubbles'} color={'#003300'} height={150} width={150}/></div> : ( null ) }
+
 			<Switch>
-				  <Route exact path="/admin" render={(props) => <Admin {...props} handleErrorMessage={this.handleErrorMessage}/>}/>
+				  <Route exact path="/admin" render={(props) => <Admin {...props} handleErrorMessage={this.handleErrorMessage} handleLoader={this.handleLoader}/>}/>
 				  <Route exact path="/" render={(props) => <Guest {...props} handleErrorMessage={this.handleErrorMessage}/>} handleErrorMessage={this.handleErrorMessage}/>
 				  <Route exact path="/changeReservationForm" component={ChangeReservationForm}/>
 			</Switch>

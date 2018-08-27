@@ -15,9 +15,12 @@ class Admin extends Component {
     }
 
     fetchReservationsAndGuest = () => {
+        this.props.handleLoader();
+        
         fetch('http://localhost:8888/fetchReservationsAndGuest.php')
             .then((response) => response.json())
             .then((data) => {
+                this.props.handleLoader();
                 this.displayReservations(data);
             })
             .catch(error => this.props.handleErrorMessage());
