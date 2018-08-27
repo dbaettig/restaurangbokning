@@ -20,6 +20,7 @@ class Guest extends Component {
 
 	fetchDate = (event) => {
 		event.preventDefault();
+		this.props.handleLoader();
 		let formValues = JSON.stringify(this.state);
 		console.log(this.state);
 
@@ -33,6 +34,7 @@ class Guest extends Component {
 		})
 			.then((response) => response.json())
 			.then((time) => {
+				this.props.handleLoader();
 				this.countReservations(time);
 				this.setState({buttonStyle: true});
 			})

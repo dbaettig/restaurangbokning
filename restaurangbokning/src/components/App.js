@@ -51,7 +51,7 @@ class App extends Component {
 
 			<Switch>
 				  <Route exact path="/admin" render={(props) => <Admin {...props} handleErrorMessage={this.handleErrorMessage} handleLoader={this.handleLoader}/>}/>
-				  <Route exact path="/" render={(props) => <Guest {...props} handleErrorMessage={this.handleErrorMessage}/>} handleErrorMessage={this.handleErrorMessage}/>
+				  <Route exact path="/" render={(props) => <Guest {...props} handleErrorMessage={this.handleErrorMessage} handleLoader={this.handleLoader}/>}/>
 				  <Route exact path="/changeReservationForm" component={ChangeReservationForm}/>
 			</Switch>
         </div>
