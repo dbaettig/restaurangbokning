@@ -147,12 +147,14 @@ class Guest extends Component {
 
 
 	render() {
+		let today = new Date().toJSON().slice(0,10);
+		console.log(today);
 		let buttonStyle = 'hidden';
 		this.state.buttonStyle ? buttonStyle = 'display' : buttonStyle = 'hidden';
 		
 		return (
 			<div className="formWrapper">
-
+				
 				{this.state.showGuestForm ? (
 					<div>
 						{this.state.showConfirmation ? (
@@ -168,10 +170,10 @@ class Guest extends Component {
 								 	</div>
 
 									<form method="POST" className="dateForm" onSubmit={this.fetchGuestId}>
-										<input type="text" name="firstName" placeholder="first name" onChange={this.handleChange} />
-										<input type="text" name="lastName" placeholder="last name" onChange={this.handleChange} />
-										<input type="text" name="phone" placeholder="phone number" onChange={this.handleChange} />
-										<input type="text" name="email" placeholder="email" onChange={this.handleChange} />
+										<input type="text" required name="firstName" placeholder="first name" onChange={this.handleChange} />
+										<input type="text" required name="lastName" placeholder="last name" onChange={this.handleChange} />
+										<input type="text" required name="phone" placeholder="phone number" onChange={this.handleChange} />
+										<input type="text" required name="email" placeholder="email" onChange={this.handleChange} />
 										<button type="submit">BOOK</button>
 									</form>
 								 	<button onClick={(event) => { window.location.assign("/"); }}>Cancel</button>
@@ -182,7 +184,7 @@ class Guest extends Component {
 						<div>
 							<form method="POST" className="dateForm" onSubmit={this.fetchDate}>
 								<input type="number" min="1" max="6" required name="participants" placeholder="2 People" onChange={this.handleChange} />
-								<input type="date" name="date" onChange={this.handleChange} />
+								<input type="date" required min={today} name="date" onChange={this.handleChange} />
 								<button type="submit" value="submit">SEARCH AVAILABILITY</button>
 							</form>
 					

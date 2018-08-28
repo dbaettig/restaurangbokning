@@ -75,10 +75,13 @@ class Admin extends Component {
         });
     }
 	closeChangeGuestForm = (event) => {
+		console.log("hallåå??")
+		
         event.preventDefault();
         this.setState({
-            changeGuestsForm: false
+            changeGuestForm: false
         });
+		console.log(this.state);
     }
 
     changeReservation = (event) => {
