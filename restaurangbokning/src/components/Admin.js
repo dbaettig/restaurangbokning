@@ -7,14 +7,14 @@ class Admin extends Component {
     state = {
         changeReservationForm: false,
 		changeGuestForm: false,
-        reservation: [],
 		reservations: [],
         reservationId: "",
         participants: "",
 		firstName: "",
 		lastName: "",
 		phone: "",
-		email: ""
+		email: "",
+		id: ""
 		
     }
 
@@ -58,7 +58,11 @@ class Admin extends Component {
         this.setState({
             changeGuestForm: true,
 			reservation: reservation,
-			firstName: reservation.firstName
+			firstName: reservation.firstName,
+			lastName: reservation.lastName,
+			phone: reservation.phone,
+			email: reservation.email,
+			id: reservation.id
         });
 		 console.log(this.state);
 		 
@@ -95,6 +99,25 @@ class Admin extends Component {
             .catch(error => this.props.handleErrorMessage());
 		//Redirect back to admin page.
     }
+	changeGuest = (event) => {
+		console.log(this.state);
+        event.preventDefault();
+		let formValues = JSON.stringify(this.state);
+		fetch('http://localhost:8888/changeGuest.php?formData=' + formValues, {
+			method: 'GET',
+			headers:
+			{
+				'Accept': 'application/json',
+				'Content-type': 'text/plain',
+			}
+		})
+			.then((response) => {
+				console.log(response);
+				window.location.assign("/admin");
+			})
+			.catch(error => this.props.handleErrorMessage());
+	//Redirect back to admin page.	
+    }
 
     deleteReservation = (event) => {
         fetch('http://localhost:8888/deleteReservation.php?formData=' + event.target.name, {
@@ -120,7 +143,7 @@ class Admin extends Component {
 			
 			{this.state.changeReservationForm && <ChangeReservationForm handleChange={this.handleChange} changeReservation={this.changeReservation} closeChangeReservationForm={this.closeChangeReservationForm} />}
 			
-			{this.state.changeGuestForm && <ChangeGuestForm handleChange={this.handleChange} state={this.state.reservation} closeChangeGuestForm={this.closeChangeGuestForm}/>}
+			{this.state.changeGuestForm && <ChangeGuestForm handleChange={this.handleChange} state={this.state} closeChangeGuestForm={this.closeChangeGuestForm} changeGuest={this.changeGuest}/>}
 			
 			{!this.state.changeReservationForm && !this.state.changeGuestForm && <div className="displayBookings">
                         {this.state.reservations}
