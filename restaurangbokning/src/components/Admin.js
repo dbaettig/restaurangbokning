@@ -82,7 +82,6 @@ class Admin extends Component {
 		console.log(this.state);
     }
 
- 
 	changeGuest = (event) => {
 		console.log(this.state);
         event.preventDefault();
@@ -123,33 +122,18 @@ class Admin extends Component {
     render() {
         return (
             <div>
-			
-			
-			{this.state.changeReservationForm && <ChangeReservationForm appState={this.props.appState} handleChange={this.props.handleChange} changeReservation={this.props.changeReservation} closeChangeReservationForm={this.closeChangeReservationForm} />}
-			
-			{this.state.changeGuestForm && <ChangeGuestForm handleChange={this.handleChange} state={this.state} closeChangeGuestForm={this.closeChangeGuestForm} changeGuest={this.changeGuest}/>}
-			
-			{!this.state.changeReservationForm && !this.state.changeGuestForm && <div className="displayBookings">
-                        {this.state.reservations}
-             </div>}
-			
-				{/* if(this.state.changeReservationForm){
-					<ChangeReservationForm handleChange={this.handleChange} changeReservation={this.changeReservation} closeChangeReservationForm={this.closeChangeReservationForm}/>
-				} else if(this.state.changeGuestForm){
-				 	<ChangeGuestForm handleChange={this.handleChange} closeChangeGuestForm={this.closeChangeGuestForm}/>
-				}
-			}
-		
-			
-                {this.state.changeReservationForm ? 
-					<ChangeReservationForm handleChange={this.handleChange} changeReservation={this.changeReservation} closeChangeReservationForm={this.closeChangeReservationForm}/> :
-                    <div className="displayBookings">
-                        {this.state.reservations}
-                    </div>
-                */ }
-			
-			
-			
+				{this.state.changeReservationForm && <ChangeReservationForm 
+				 appState={this.props.appState} 
+				 handleChange={this.props.handleChange}
+				 fetchDate={this.props.fetchDate}
+				 changeReservation={this.props.changeReservation} closeChangeReservationForm={this.closeChangeReservationForm}
+				 showConfirmationForChangeRes={this.props.showConfirmationForChangeRes} />}
+
+				{this.state.changeGuestForm && <ChangeGuestForm handleChange={this.handleChange} state={this.state} closeChangeGuestForm={this.closeChangeGuestForm} changeGuest={this.changeGuest}/>}
+
+				{!this.state.changeReservationForm && !this.state.changeGuestForm && <div className="displayBookings">
+							{this.state.reservations}
+				 </div>}
             </div>
         );
     }

@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 
 class Guest extends Component {
-	state = {
-		
-	}
+	
 
 	render() {
-		//Getting todays daye to use in the date picker in the guestform.
+		//Getting todays daye to use in the date picker in the guest form.
 		let today = new Date().toJSON().slice(0,10);
 		
 		let buttonStyle = 'hidden';

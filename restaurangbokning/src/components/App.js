@@ -25,6 +25,7 @@ class App extends Component {
 			chosenSitting: "",
 			showGuestForm: false,
 			showConfirmation: false,
+		  	showConfirmationForChangeRes: false,
 			guestId: "",
 			firstName: "",
 			lastName: "",
@@ -155,9 +156,14 @@ class App extends Component {
 			date: date,
 			chosenSitting: chosenSitting,
 			resId: resId
-		})
-		
+		})	
 	}
+	
+	showConfirmationForChangeRes = () => {
+		this.setState({showConfirmationForChangeRes: true});
+	}
+	
+	
    changeReservation = (event) => {
 	 console.log(this.state.date);
 	event.preventDefault();
@@ -171,16 +177,12 @@ class App extends Component {
 		}
 	})
 		.then((response) => {
-			console.log(response);
-			//window.location.assign("/admin");
+			window.location.assign("/admin");	
 		})
 		.catch(error => this.handleErrorMessage());
 	//Redirect back to admin page.
     }
 	
-	
-
-
   handleErrorMessage = () => {
     this.setState({errorMessage: !this.state.errorMessage});
   }
@@ -205,8 +207,11 @@ class App extends Component {
 				  setStateForChangeReservation={this.setStateForChangeReservation}
 				  appState={this.state}
 				  changeReservation={this.changeReservation}
+				  showConfirmationForChangeRes={this.showConfirmationForChangeRes}
 				  handleLoader={this.handleLoader}
-				  handleChange={this.handleChange} />}/>
+				  handleChange={this.handleChange}
+				  fetchDate={this.fetchDate}/>}/>
+					  
 				  <Route exact path="/" render={(props) => <Guest {...props} handleErrorMessage={this.handleErrorMessage} 
 				  countReservations={this.countReservations} 
 				  fetchDate={this.fetchDate}
@@ -215,6 +220,7 @@ class App extends Component {
 				  checkIfIdExists={this.checkIfIdExists}
 				  postReservation={this.postReservation}
 				  postGuestAndReservation={this.postGuestAndReservation}
+				  
 				  handleChange={this.handleChange}
 				  handleLoader={this.handleLoader}
 				  state={this.state} />}/>
@@ -225,7 +231,6 @@ class App extends Component {
       </div >
     );
   }
-
 }
 
 export default App;
