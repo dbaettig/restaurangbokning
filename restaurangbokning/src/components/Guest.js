@@ -4,7 +4,6 @@ class Guest extends Component {
 	state = {
 		date: "",
 		participants: "",
-		response: {},
 		buttonStyle: false,
 		firstSitting: false,
 		secondSitting: false,
@@ -22,8 +21,6 @@ class Guest extends Component {
 		event.preventDefault();
 		this.props.handleLoader();
 		let formValues = JSON.stringify(this.state);
-		console.log(this.state);
-
 		fetch('http://localhost:8888/fetchDate.php?formData=' + formValues, {
 			method: 'GET',
 			headers:
@@ -39,11 +36,9 @@ class Guest extends Component {
 				this.setState({buttonStyle: true});
 			})
 			.catch(error => this.props.handleErrorMessage());
-		
 	}
 
 	countReservations = (time) => {
-		this.setState({ response: time });
 		let firstTime = time.filter(sitting => sitting.time === "06:00:00");
 		let secondTime = time.filter(sitting => sitting.time === "09:00:00");
 
@@ -80,11 +75,9 @@ class Guest extends Component {
 		.then((response) => response.json())
 		.then((guestId) => {
 			this.props.handleLoader();
-			console.log(guestId);
 			this.checkIfIdExists(guestId);
 		})
         .catch(error => this.props.handleErrorMessage());
-
 	}
 
 	checkIfIdExists = (guestId) => {
@@ -96,7 +89,6 @@ class Guest extends Component {
 			this.setState({guestId: guestId[0].id});
 			this.postReservation();
 		}
-
 	}
 
 	postReservation = () => {
@@ -113,17 +105,14 @@ class Guest extends Component {
 		})
 			.then((response) => {
 				this.props.handleLoader();
-				console.log(response);
 			})
 			.catch(error => this.props.handleErrorMessage());
-
 		this.setState({showConfirmation: true});
 	}
 
 	postGuestAndReservation = () => {
 		this.props.handleLoader();
 		let formValues = JSON.stringify(this.state);
-		console.log('create new user');
 		fetch('http://localhost:8888/postGuestAndReservation.php?formData=' + formValues, {
 			method: 'GET',
 			headers:
@@ -134,10 +123,8 @@ class Guest extends Component {
 		})
 			.then((response) => {
 				this.props.handleLoader();
-				console.log(response);
 			})
 			.catch(error => this.props.handleErrorMessage());
-			
 		this.setState({showConfirmation: true});
 	}
 
@@ -147,14 +134,14 @@ class Guest extends Component {
 
 
 	render() {
+		//Getting todays daye to use in the date picker in the guestform.
 		let today = new Date().toJSON().slice(0,10);
-		console.log(today);
+		
 		let buttonStyle = 'hidden';
 		this.state.buttonStyle ? buttonStyle = 'display' : buttonStyle = 'hidden';
 		
 		return (
 			<div className="formWrapper">
-				
 				{this.state.showGuestForm ? (
 					<div>
 						{this.state.showConfirmation ? (
@@ -202,10 +189,8 @@ class Guest extends Component {
 									(<p>There are no available tables at 09:00 PM.</p>)
 								}
 							</div>
-
 						</div>
 					)}
-
 			</div>
 		);
 	}

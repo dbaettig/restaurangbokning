@@ -21,7 +21,6 @@ class App extends Component {
   }
 
   handleErrorMessage = () => {
-    console.log('openerror works');
     this.setState({errorMessage: !this.state.errorMessage});
   }
   handleLoader = () => {
@@ -29,13 +28,13 @@ class App extends Component {
   }
 
 
-  fetchGuests = () => {
+  /*fetchGuests = () => {
     fetch('http://localhost:8888/fetchGuests.php')
       .then((response) => response.json())
       .then((guests) => {
         console.log(guests);
       })
-  }
+  }*/
 
   render() {
     return (

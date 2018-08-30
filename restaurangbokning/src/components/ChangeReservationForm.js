@@ -8,6 +8,7 @@ class ChangeReservationForm extends Component {
             <div>
                 <form>
                     <input type="number" min="1" max="6" name="participants" placeholder="2 People" onChange={this.props.handleChange} />
+					<input type="number" min="1" max="6" name="participants" placeholder="2 People" onChange={this.props.handleChange} />
                     <button type="submit" value="submit" onClick={this.props.changeReservation}>Change</button>
                     <button onClick={this.props.closeChangeReservationForm}>Cancel</button>
                 </form>
