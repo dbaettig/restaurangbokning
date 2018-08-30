@@ -131,3 +131,7 @@ border-style:none;
   align-content: center;
   top: 50%;
 }
+
+.linkIsActive {
+  color: red;
+}
