@@ -39,8 +39,8 @@ class Guest extends Component {
 	}
 
 	countReservations = (time) => {
-		let firstTime = time.filter(sitting => sitting.time === "06:00:00");
-		let secondTime = time.filter(sitting => sitting.time === "09:00:00");
+		let firstTime = time.filter(sitting => sitting.time === "06:00");
+		let secondTime = time.filter(sitting => sitting.time === "09:00");
 
 		if (firstTime.length < 15) {
 			this.setState({
@@ -178,12 +178,12 @@ class Guest extends Component {
 							<div className={"timeButtons " + buttonStyle}>
 								<p>Available sittings:</p>
 								{this.state.firstSitting ? (
-									<button name="chosenSitting" value="06:00:00" onClick={(event) => { this.handleChange(event); this.showGuestForm(); }}>
+									<button name="chosenSitting" value="06:00" onClick={(event) => { this.handleChange(event); this.showGuestForm(); }}>
 										06:00</button>
 								) : (<p>There are no available tables at 06:00 PM.</p>)
 								}
 								{this.state.secondSitting ? (
-									<button name="chosenSitting" value="09:00:00" onClick={(event) => { this.handleChange(event); this.showGuestForm(); }}>
+									<button name="chosenSitting" value="09:00" onClick={(event) => { this.handleChange(event); this.showGuestForm(); }}>
 										09:00</button>
 								) :
 									(<p>There are no available tables at 09:00 PM.</p>)
