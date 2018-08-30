@@ -37,7 +37,7 @@ class Admin extends Component {
     displayReservations = (data) => {
         let reservations = data.map((reservation) =>
             <div key={reservation.resId}>
-                Datum: {reservation.date} {reservation.time}{reservation.participants} {reservation.firstName} ID: {reservation.resId}
+                Datum: {reservation.date} {reservation.time} {reservation.participants} {reservation.firstName} ID: {reservation.resId}
                 <button name={reservation.resId} onClick={this.deleteReservation}>Delete</button>
                 <button name={reservation.resId} onClick={this.openChangeReservationForm}>Change reservation</button> 
 				<button onClick={() => {this.openChangeGuestForm(reservation)}}>Change guest info</button> 

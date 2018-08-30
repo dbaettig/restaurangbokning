@@ -3,7 +3,7 @@ import '../App.css';
 import {
   NavLink
 } from 'react-router-dom';
-import ReactLoading from 'react-loading';
+
 
 class Header extends Component {
 
