@@ -39,7 +39,7 @@ class Admin extends Component {
             <div key={reservation.resId}>
                 Datum: {reservation.date} {reservation.time} {reservation.participants} {reservation.firstName} ID: {reservation.resId}
                 <button name={reservation.resId} onClick={this.deleteReservation}>Delete</button>
-                <button name={reservation.resId} onClick={this.openChangeReservationForm}>Change reservation</button> 
+                <button name={reservation.resId} onClick={() => {this.openChangeReservationForm(reservation)}}>Change reservation</button> 
 				<button onClick={() => {this.openChangeGuestForm(reservation)}}>Change guest info</button> 
             </div>
         );
@@ -47,11 +47,11 @@ class Admin extends Component {
     }
 
     // Form for changing a booking in admin 
-    openChangeReservationForm = (event) => {
+    openChangeReservationForm = (reservation) => {
         this.setState({
-            reservationId: event.target.name,
             changeReservationForm: true
         });
+		 this.props.setStateForChangeReservation(reservation.participants, reservation.date, reservation.time, reservation.resId)
     }
 	
 	 openChangeGuestForm = (reservation) => {
@@ -75,8 +75,6 @@ class Admin extends Component {
         });
     }
 	closeChangeGuestForm = (event) => {
-		console.log("hallåå??")
-		
         event.preventDefault();
         this.setState({
             changeGuestForm: false
@@ -84,24 +82,7 @@ class Admin extends Component {
 		console.log(this.state);
     }
 
-    changeReservation = (event) => {
-        event.preventDefault();
-        let formValues = JSON.stringify(this.state);
-        fetch('http://localhost:8888/changeReservation.php?formData=' + formValues, {
-            method: 'GET',
-            headers:
-            {
-                'Accept': 'application/json',
-                'Content-type': 'text/plain',
-            }
-        })
-            .then((response) => {
-				console.log(response);
-        		window.location.assign("/admin");
-            })
-            .catch(error => this.props.handleErrorMessage());
-		//Redirect back to admin page.
-    }
+ 
 	changeGuest = (event) => {
 		console.log(this.state);
         event.preventDefault();
@@ -144,7 +125,7 @@ class Admin extends Component {
             <div>
 			
 			
-			{this.state.changeReservationForm && <ChangeReservationForm handleChange={this.handleChange} changeReservation={this.changeReservation} closeChangeReservationForm={this.closeChangeReservationForm} />}
+			{this.state.changeReservationForm && <ChangeReservationForm appState={this.props.appState} handleChange={this.props.handleChange} changeReservation={this.props.changeReservation} closeChangeReservationForm={this.closeChangeReservationForm} />}
 			
 			{this.state.changeGuestForm && <ChangeGuestForm handleChange={this.handleChange} state={this.state} closeChangeGuestForm={this.closeChangeGuestForm} changeGuest={this.changeGuest}/>}
 			

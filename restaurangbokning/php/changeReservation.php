@@ -5,11 +5,13 @@ $formData = JSON_decode($_GET['formData']);
 
 $statement = $pdo->prepare(
     "UPDATE reservations 
-    SET participants = :participants
-    WHERE resId = :reservationId"
+    SET participants = :participants, date = :date
+    WHERE resId = :resId"
 );
 
 $statement->execute(array(
     ":participants" => $formData->participants,
-    ":reservationId" => $formData->reservationId
+    ":resId" => $formData->resId,
+	":date" => $formData->date
 ));
+

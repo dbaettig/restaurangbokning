@@ -29,7 +29,8 @@ class App extends Component {
 			firstName: "",
 			lastName: "",
 			phone: "",
-			email: ""
+			email: "",
+		  	resId: ""
 	  }
 
 	//Select the chosen date and get the time-reservations.
@@ -93,7 +94,7 @@ class App extends Component {
 			this.handleLoader();
 			this.checkIfIdExists(guestId);
 		})
-        .catch(error => this.props.handleErrorMessage());
+        .catch(error => this.handleErrorMessage());
 	}
 	
 	checkIfIdExists = (guestId) => {
@@ -122,7 +123,7 @@ class App extends Component {
 			.then((response) => {
 				this.handleLoader();
 			})
-			.catch(error => this.props.handleErrorMessage());
+			.catch(error => this.handleErrorMessage());
 		this.setState({showConfirmation: true});
 	}
 
@@ -140,13 +141,44 @@ class App extends Component {
 			.then((response) => {
 				this.handleLoader();
 			})
-			.catch(error => this.props.handleErrorMessage());
+			.catch(error => this.handleErrorMessage());
 		this.setState({showConfirmation: true});
 	}
 
 	handleChange = (event) => {
 		this.setState({ [event.target.name]: event.target.value })
 	}
+	
+	setStateForChangeReservation = (participants, date, chosenSitting, resId) => {
+		this.setState({
+			participants: participants,
+			date: date,
+			chosenSitting: chosenSitting,
+			resId: resId
+		})
+		
+	}
+   changeReservation = (event) => {
+	 console.log(this.state.date);
+	event.preventDefault();
+	let formValues = JSON.stringify(this.state);
+	fetch('http://localhost:8888/changeReservation.php?formData=' + formValues, {
+		method: 'GET',
+		headers:
+		{
+			'Accept': 'application/json',
+			'Content-type': 'text/plain',
+		}
+	})
+		.then((response) => {
+			console.log(response);
+			//window.location.assign("/admin");
+		})
+		.catch(error => this.handleErrorMessage());
+	//Redirect back to admin page.
+    }
+	
+	
 
 
   handleErrorMessage = () => {
@@ -169,7 +201,12 @@ class App extends Component {
         <ReactLoading type={'bubbles'} color={'#003300'} height={150} width={150}/></div> : ( null ) }
 
 			<Switch>
-				  <Route exact path="/admin" render={(props) => <Admin {...props} handleErrorMessage={this.handleErrorMessage} handleLoader={this.handleLoader}/>}/>
+				  <Route exact path="/admin" render={(props) => <Admin {...props} handleErrorMessage={this.handleErrorMessage}
+				  setStateForChangeReservation={this.setStateForChangeReservation}
+				  appState={this.state}
+				  changeReservation={this.changeReservation}
+				  handleLoader={this.handleLoader}
+				  handleChange={this.handleChange} />}/>
 				  <Route exact path="/" render={(props) => <Guest {...props} handleErrorMessage={this.handleErrorMessage} 
 				  countReservations={this.countReservations} 
 				  fetchDate={this.fetchDate}
