@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 
 class Guest extends Component {
 	
-
 	render() {
 		//Getting todays daye to use in the date picker in the guest form.
 		let today = new Date().toJSON().slice(0,10);
-		
 		let buttonStyle = 'hidden';
 		this.props.state.buttonStyle ? buttonStyle = 'display' : buttonStyle = 'hidden';
 		
@@ -14,7 +12,6 @@ class Guest extends Component {
 			<div className="formWrapper">
 				{this.props.state.showGuestForm ? (
 					<div>
-			
 						{this.props.state.showConfirmation ? (
 								<div>
 									<p>Thank you for your reservation {this.props.state.firstName} {this.props.state.lastName}. You have booked {this.props.state.date}, at {this.props.state.chosenSitting} PM for {this.props.state.participants} people. </p>

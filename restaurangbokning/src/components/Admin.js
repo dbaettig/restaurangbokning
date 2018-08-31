@@ -24,7 +24,6 @@ class Admin extends Component {
 
     fetchReservationsAndGuest = () => {
         this.props.handleLoader();
-        
         fetch('http://localhost:8888/fetchReservationsAndGuest.php')
             .then((response) => response.json())
             .then((data) => {
@@ -63,9 +62,7 @@ class Admin extends Component {
 			phone: reservation.phone,
 			email: reservation.email,
 			id: reservation.id
-        });
-		 console.log(this.state);
-		 
+        });	 
     }
 
     closeChangeReservationForm = (event) => {
@@ -74,12 +71,12 @@ class Admin extends Component {
             changeReservationForm: false
         });
     }
+	
 	closeChangeGuestForm = (event) => {
         event.preventDefault();
         this.setState({
             changeGuestForm: false
         });
-		console.log(this.state);
     }
 
 	changeGuest = (event) => {
@@ -95,7 +92,6 @@ class Admin extends Component {
 			}
 		})
 			.then((response) => {
-				console.log(response);
 				window.location.assign("/admin");
 			})
 			.catch(error => this.props.handleErrorMessage());

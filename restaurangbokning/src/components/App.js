@@ -34,7 +34,7 @@ class App extends Component {
 		  	resId: ""
 	  }
 
-	//Select the chosen date and get the time-reservations.
+	//Find the chosen date and see if there are time-reservations.
 	fetchDate = (event) => {
 		event.preventDefault();
 		this.handleLoader();
@@ -59,7 +59,6 @@ class App extends Component {
 	countReservations = (time) => {
 		let firstTime = time.filter(sitting => sitting.time === "06:00");
 		let secondTime = time.filter(sitting => sitting.time === "09:00");
-
 		if (firstTime.length < 15) {
 			this.setState({
 				firstSitting: true
@@ -71,7 +70,7 @@ class App extends Component {
 			})
 		}
 	}
-	//Show form for guest info.
+	//Show form for user to fill in guest info.
 	showGuestForm = (event) => {
 		this.setState({
 			showGuestForm: true
@@ -112,7 +111,6 @@ class App extends Component {
 	postReservation = () => {
 		this.handleLoader();
 		let formValues = JSON.stringify(this.state);
-		console.log('user existed');
 		fetch('http://localhost:8888/postReservation.php?formData=' + formValues, {
 			method: 'GET',
 			headers:
@@ -163,9 +161,7 @@ class App extends Component {
 		this.setState({showConfirmationForChangeRes: true});
 	}
 	
-	
    changeReservation = (event) => {
-	 console.log(this.state.date);
 	event.preventDefault();
 	let formValues = JSON.stringify(this.state);
 	fetch('http://localhost:8888/changeReservation.php?formData=' + formValues, {
@@ -183,12 +179,12 @@ class App extends Component {
 	//Redirect back to admin page.
     }
 	
-  handleErrorMessage = () => {
-    this.setState({errorMessage: !this.state.errorMessage});
-  }
-  handleLoader = () => {
-   this.setState({loader: !this.state.loader})
-  }
+	  handleErrorMessage = () => {
+		this.setState({errorMessage: !this.state.errorMessage});
+	  }
+	  handleLoader = () => {
+	   this.setState({loader: !this.state.loader})
+	  }
 
   render() {
     return (
@@ -197,10 +193,10 @@ class App extends Component {
 			  <Header />
 			  {this.state.errorMessage ? 
 				<ErrorMessage handleErrorMessage={this.handleErrorMessage}/> : ( null ) 
-        }
+        	  }
         
-        {this.state.loader ? 	<div className='loader'>
-        <ReactLoading type={'bubbles'} color={'#003300'} height={150} width={150}/></div> : ( null ) }
+			  {this.state.loader ? <div className='loader'>
+			  <ReactLoading type={'bubbles'} color={'#003300'} height={150} width={150}/></div> : ( null ) }
 
 			<Switch>
 				  <Route exact path="/admin" render={(props) => <Admin {...props} handleErrorMessage={this.handleErrorMessage}

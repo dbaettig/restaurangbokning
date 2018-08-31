@@ -10,9 +10,7 @@ class ErrorMessage extends Component {
 				<button onClick={(event) => window.location.assign("/")}>Ok</button>
             </div>
         )
-    }
-    
+    }   
 }
-
 
 export default ErrorMessage;

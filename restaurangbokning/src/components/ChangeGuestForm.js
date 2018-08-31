@@ -7,7 +7,6 @@ class ChangeGuestForm extends Component {
         return (
             <div>
                 <form>
-				
                     <input type="text" name="firstName" value={this.props.state.firstName} onChange={this.props.handleChange} />
 					<input type="text" name="lastName" value={this.props.state.lastName} onChange={this.props.handleChange} />
 					<input type="text" name="phone" value={this.props.state.phone} onChange={this.props.handleChange} />

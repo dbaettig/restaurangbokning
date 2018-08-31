@@ -4,13 +4,10 @@ import {
   NavLink
 } from 'react-router-dom';
 
-
 class Header extends Component {
-
 
     render() {
         return (
-
             <div>
                 <div>
 					<ul>
@@ -18,12 +15,10 @@ class Header extends Component {
                         <li> <NavLink activeClassName="linkIsActive" to="/admin">ADMIN</NavLink> </li>
 					</ul>
 				</div>
-
                 <header>
                     <h2>BOKA BORD</h2>
                 </header>   
             </div>
-
         )
     }
 }
