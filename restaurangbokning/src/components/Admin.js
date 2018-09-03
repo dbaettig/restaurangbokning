@@ -34,7 +34,12 @@ class Admin extends Component {
     }
 
     displayReservations = (data) => {
-        let reservations = data.map((reservation) =>
+		let sortedData = data.sort((a, b) => {
+    					let dateA = new Date(a.date), dateB = new Date(b.date);
+						return dateA - dateB;
+					});
+		console.log(sortedData);
+        let reservations = sortedData.map((reservation) =>
             <div key={reservation.resId}>
                 Datum: {reservation.date} {reservation.time} {reservation.participants} {reservation.firstName} ID: {reservation.resId}
                 <button name={reservation.resId} onClick={this.deleteReservation}>Delete</button>
@@ -42,6 +47,7 @@ class Admin extends Component {
 				<button onClick={() => {this.openChangeGuestForm(reservation)}}>Change guest info</button> 
             </div>
         );
+		
         this.setState({ reservations: reservations })
     }
 
