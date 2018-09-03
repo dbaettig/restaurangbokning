@@ -11,7 +11,7 @@ class ChangeReservationForm extends Component {
         return (
             
 			<div className="formWrapper">
-				{this.props.appState.showConfirmationForChangeRes ? (
+				{this.props.appState.showButtonForChangeRes ? (
 					<div>		
 						<p>Change the reservation to {this.props.appState.participants} people at {this.props.appState.chosenSitting} o'clock on {this.props.appState.date}.</p>
 						<button onClick={this.props.changeReservation}>Change</button>
@@ -27,12 +27,12 @@ class ChangeReservationForm extends Component {
 						<div className={"timeButtons " + buttonStyle}>
 							<p>Available sittings:</p>
 							{this.props.appState.firstSitting ? (
-								<button name="chosenSitting" value="06:00" onClick={(event) => { this.props.handleChange(event); this.props.showConfirmationForChangeRes(); }}>
+								<button name="chosenSitting" value="06:00" onClick={(event) => { this.props.handleChange(event); this.props.showButtonForChangeRes(); }}>
 									06:00</button>
 							) : (<p>There are no available tables at 06:00 PM.</p>)
 							}
 							{this.props.appState.secondSitting ? (
-								<button name="chosenSitting" value="09:00" onClick={(event) => { this.props.handleChange(event); this.props.showConfirmationForChangeRes(); }}>
+								<button name="chosenSitting" value="09:00" onClick={(event) => { this.props.handleChange(event); this.props.showButtonForChangeRes(); }}>
 									09:00</button>
 							) :
 								(<p>There are no available tables at 09:00 PM.</p>)

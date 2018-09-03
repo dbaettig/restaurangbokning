@@ -27,7 +27,7 @@ class App extends Component {
 			chosenSitting: "",
 			showGuestForm: false,
 			showConfirmation: false,
-		  	showConfirmationForChangeRes: false,
+		  	showButtonForChangeRes: false,
 			guestId: "",
 			firstName: "",
 			lastName: "",
@@ -40,13 +40,10 @@ class App extends Component {
 	fetchDate = (event) => {
 		event.preventDefault();
 		this.handleLoader();
-		
 		let postData = {
-			date: this.state.date,
-			
+			date: this.state.date
 		}
-		
-		let formValues = JSON.stringify(this.state);
+		let formValues = JSON.stringify(postData);
 		fetch('http://localhost:8888/fetchDate.php?formData=' + formValues, {
 			method: 'GET',
 			headers:
@@ -84,11 +81,14 @@ class App extends Component {
 			showGuestForm: true
 		})
 	}
-	//Get id for guest using entered email.
+	//Get id for guest using the entered email.
 	fetchGuestId = (event) => {
 		event.preventDefault();
 		this.handleLoader();
-		let formValues = JSON.stringify(this.state);
+		let postData = {
+			email: this.state.email
+		}
+		let formValues = JSON.stringify(postData);
 		fetch('http://localhost:8888/fetchGuestId.php?formData=' + formValues, {
 			method: 'GET',
 			headers:
@@ -104,9 +104,8 @@ class App extends Component {
 		})
         .catch(error => this.handleErrorMessage());
 	}
-	
+	//If the guest is already in the db, post only the reservation.
 	checkIfIdExists = (guestId) => {
-		console.log('check if id');
 		if(guestId.length === 0){
 			this.postGuestAndReservation();
 		}
@@ -118,7 +117,13 @@ class App extends Component {
 
 	postReservation = () => {
 		this.handleLoader();
-		let formValues = JSON.stringify(this.state);
+		let postData = {
+			guestId: this.state.guestId,
+			date: this.state.date,
+			chosenSitting: this.state.chosenSitting,
+			participants: this.state.participants
+		}
+		let formValues = JSON.stringify(postData);
 		fetch('http://localhost:8888/postReservation.php?formData=' + formValues, {
 			method: 'GET',
 			headers:
@@ -136,7 +141,16 @@ class App extends Component {
 
 	postGuestAndReservation = () => {
 		this.handleLoader();
-		let formValues = JSON.stringify(this.state);
+		let postData = {
+			firstName: this.state.firstName,
+			lastName: this.state.lastName,
+			phone: this.state.phone,
+			email: this.state.email,
+			date: this.state.date,
+			chosenSitting: this.state.chosenSitting,
+			participants: this.state.participants
+		}
+		let formValues = JSON.stringify(postData);
 		fetch('http://localhost:8888/postGuestAndReservation.php?formData=' + formValues, {
 			method: 'GET',
 			headers:
@@ -156,6 +170,7 @@ class App extends Component {
 		this.setState({ [event.target.name]: event.target.value })
 	}
 	
+	//Get data from the Change Reservation Form and place it in state.
 	setStateForChangeReservation = (participants, date, chosenSitting, resId) => {
 		this.setState({
 			participants: participants,
@@ -165,21 +180,27 @@ class App extends Component {
 		})	
 	}
 	
-	showConfirmationForChangeRes = () => {
-		this.setState({showConfirmationForChangeRes: true});
+	showButtonForChangeRes = () => {
+		this.setState({showButtonForChangeRes: true});
 	}
 	
    changeReservation = (event) => {
 	event.preventDefault();
-	let formValues = JSON.stringify(this.state);
-	fetch('http://localhost:8888/changeReservation.php?formData=' + formValues, {
-		method: 'GET',
-		headers:
-		{
-			'Accept': 'application/json',
-			'Content-type': 'text/plain',
+	let postData = {
+			date: this.state.date,
+			chosenSitting: this.state.chosenSitting,
+			participants: this.state.participants,
+			resId: this.state.resId
 		}
-	})
+		let formValues = JSON.stringify(postData);
+		fetch('http://localhost:8888/changeReservation.php?formData=' + formValues, {
+			method: 'GET',
+			headers:
+			{
+				'Accept': 'application/json',
+				'Content-type': 'text/plain',
+			}
+		})
 		.then((response) => {
 			window.location.assign("/admin");	
 		})
@@ -213,7 +234,7 @@ class App extends Component {
 				  setStateForChangeReservation={this.setStateForChangeReservation}
 				  appState={this.state}
 				  changeReservation={this.changeReservation}
-				  showConfirmationForChangeRes={this.showConfirmationForChangeRes}
+				  showButtonForChangeRes={this.showButtonForChangeRes}
 				  handleLoader={this.handleLoader}
 				  handleChange={this.handleChange}
 				  fetchDate={this.fetchDate}/>}/>

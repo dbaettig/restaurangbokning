@@ -7,6 +7,14 @@ class Contact extends Component {
         return (
             <div>
                 <h1>Please, contact us!</h1>
+				<p>
+					Our Restaurant
+					Tulegatan 41
+					113 53 STOCKHOLM
+				</p>
+				<p>
+					08-123 95 99
+				</p>
             </div>
         )
     }

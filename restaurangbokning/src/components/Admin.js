@@ -80,9 +80,15 @@ class Admin extends Component {
     }
 
 	changeGuest = (event) => {
-		console.log(this.state);
         event.preventDefault();
-		let formValues = JSON.stringify(this.state);
+		let postData = {
+			firstName: this.state.firstName,
+			lastName: this.state.lastName,
+			phone: this.state.phone,
+			email: this.state.email,
+			id: this.state.id
+		}
+		let formValues = JSON.stringify(postData);
 		fetch('http://localhost:8888/changeGuest.php?formData=' + formValues, {
 			method: 'GET',
 			headers:
@@ -123,7 +129,7 @@ class Admin extends Component {
 				 handleChange={this.props.handleChange}
 				 fetchDate={this.props.fetchDate}
 				 changeReservation={this.props.changeReservation} closeChangeReservationForm={this.closeChangeReservationForm}
-				 showConfirmationForChangeRes={this.props.showConfirmationForChangeRes} />}
+				 showButtonForChangeRes={this.props.showButtonForChangeRes} />}
 
 				{this.state.changeGuestForm && <ChangeGuestForm handleChange={this.handleChange} state={this.state} closeChangeGuestForm={this.closeChangeGuestForm} changeGuest={this.changeGuest}/>}
 
