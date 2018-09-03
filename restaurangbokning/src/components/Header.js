@@ -9,7 +9,7 @@ class Header extends Component {
 
             <div>
                 <button className="adminButton" onClick={this.props.openAdmin}>{this.props.admin ? "Guest" : "Admin"}</button>
-                <header><h2>[ Green is the new Black ]</h2>
+                <header><h1> The Greenery </h1>
                 </header>
             </div>
         )
