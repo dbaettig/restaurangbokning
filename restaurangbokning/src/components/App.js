@@ -6,33 +6,34 @@ import Header from './Header';
 import ErrorMessage from './ErrorMessage';
 import ChangeReservationForm from './ChangeReservationForm';
 import ChangeGuestForm from './ChangeGuestForm';
+import ReactLoading from 'react-loading';
 import {
-  Route,
-  Switch
+	Route,
+	Switch
 } from 'react-router-dom';
 
-import ReactLoading from 'react-loading';
+
 
 class App extends Component {
-	  state = {
-			errorMessage: false,
-			loader: false,
-			date: "",
-			participants: "",
-			buttonStyle: false,
-			firstSitting: false,
-			secondSitting: false,
-			chosenSitting: "",
-			showGuestForm: false,
-			showConfirmation: false,
-		  	showConfirmationForChangeRes: false,
-			guestId: "",
-			firstName: "",
-			lastName: "",
-			phone: "",
-			email: "",
-		  	resId: ""
-	  }
+	state = {
+		errorMessage: false,
+		loader: false,
+		date: "",
+		participants: "",
+		buttonStyle: false,
+		firstSitting: false,
+		secondSitting: false,
+		chosenSitting: "",
+		showGuestForm: false,
+		showConfirmation: false,
+		showConfirmationForChangeRes: false,
+		guestId: "",
+		firstName: "",
+		lastName: "",
+		phone: "",
+		email: "",
+		resId: ""
+	}
 
 	//Find the chosen date and see if there are time-reservations.
 	fetchDate = (event) => {
@@ -51,7 +52,7 @@ class App extends Component {
 			.then((time) => {
 				this.handleLoader();
 				this.countReservations(time);
-				this.setState({buttonStyle: true});
+				this.setState({ buttonStyle: true });
 			})
 			.catch(error => this.handleErrorMessage());
 	}
@@ -89,21 +90,21 @@ class App extends Component {
 				'Content-type': 'text/plain',
 			}
 		})
-		.then((response) => response.json())
-		.then((guestId) => {
-			this.handleLoader();
-			this.checkIfIdExists(guestId);
-		})
-        .catch(error => this.handleErrorMessage());
+			.then((response) => response.json())
+			.then((guestId) => {
+				this.handleLoader();
+				this.checkIfIdExists(guestId);
+			})
+			.catch(error => this.handleErrorMessage());
 	}
-	
+
 	checkIfIdExists = (guestId) => {
 		console.log('check if id');
-		if(guestId.length === 0){
+		if (guestId.length === 0) {
 			this.postGuestAndReservation();
 		}
 		else {
-			this.setState({guestId: guestId[0].id});
+			this.setState({ guestId: guestId[0].id });
 			this.postReservation();
 		}
 	}
@@ -123,7 +124,7 @@ class App extends Component {
 				this.handleLoader();
 			})
 			.catch(error => this.handleErrorMessage());
-		this.setState({showConfirmation: true});
+		this.setState({ showConfirmation: true });
 	}
 
 	postGuestAndReservation = () => {
@@ -141,92 +142,92 @@ class App extends Component {
 				this.handleLoader();
 			})
 			.catch(error => this.handleErrorMessage());
-		this.setState({showConfirmation: true});
+		this.setState({ showConfirmation: true });
 	}
 
 	handleChange = (event) => {
 		this.setState({ [event.target.name]: event.target.value })
 	}
-	
+
 	setStateForChangeReservation = (participants, date, chosenSitting, resId) => {
 		this.setState({
 			participants: participants,
 			date: date,
 			chosenSitting: chosenSitting,
 			resId: resId
-		})	
-	}
-	
-	showConfirmationForChangeRes = () => {
-		this.setState({showConfirmationForChangeRes: true});
-	}
-	
-   changeReservation = (event) => {
-	event.preventDefault();
-	let formValues = JSON.stringify(this.state);
-	fetch('http://localhost:8888/changeReservation.php?formData=' + formValues, {
-		method: 'GET',
-		headers:
-		{
-			'Accept': 'application/json',
-			'Content-type': 'text/plain',
-		}
-	})
-		.then((response) => {
-			window.location.assign("/admin");	
 		})
-		.catch(error => this.handleErrorMessage());
-	//Redirect back to admin page.
-    }
-	
-	  handleErrorMessage = () => {
-		this.setState({errorMessage: !this.state.errorMessage});
-	  }
-	  handleLoader = () => {
-	   this.setState({loader: !this.state.loader})
-	  }
+	}
 
-  render() {
-    return (
-      <div>
-        <div className="wrapper">
-			  <Header />
-			  {this.state.errorMessage ? 
-				<ErrorMessage handleErrorMessage={this.handleErrorMessage}/> : ( null ) 
-        	  }
-        
-			  {this.state.loader ? <div className='loader'>
-			  <ReactLoading type={'bubbles'} color={'#003300'} height={150} width={150}/></div> : ( null ) }
+	showConfirmationForChangeRes = () => {
+		this.setState({ showConfirmationForChangeRes: true });
+	}
 
-			<Switch>
-				  <Route exact path="/admin" render={(props) => <Admin {...props} handleErrorMessage={this.handleErrorMessage}
-				  setStateForChangeReservation={this.setStateForChangeReservation}
-				  appState={this.state}
-				  changeReservation={this.changeReservation}
-				  showConfirmationForChangeRes={this.showConfirmationForChangeRes}
-				  handleLoader={this.handleLoader}
-				  handleChange={this.handleChange}
-				  fetchDate={this.fetchDate}/>}/>
-					  
-				  <Route exact path="/" render={(props) => <Guest {...props} handleErrorMessage={this.handleErrorMessage} 
-				  countReservations={this.countReservations} 
-				  fetchDate={this.fetchDate}
-				  showGuestForm={this.showGuestForm}
-				  fetchGuestId={this.fetchGuestId}
-				  checkIfIdExists={this.checkIfIdExists}
-				  postReservation={this.postReservation}
-				  postGuestAndReservation={this.postGuestAndReservation}
-				  
-				  handleChange={this.handleChange}
-				  handleLoader={this.handleLoader}
-				  state={this.state} />}/>
-				  <Route exact path="/changeReservationForm" component={ChangeReservationForm}/>
-				  <Route exact path="/changeGuestForm" component={ChangeGuestForm}/>
-			</Switch>
-        </div>
-      </div >
-    );
-  }
+	changeReservation = (event) => {
+		event.preventDefault();
+		let formValues = JSON.stringify(this.state);
+		fetch('http://localhost:8888/changeReservation.php?formData=' + formValues, {
+			method: 'GET',
+			headers:
+			{
+				'Accept': 'application/json',
+				'Content-type': 'text/plain',
+			}
+		})
+			.then((response) => {
+				window.location.assign("/admin");
+			})
+			.catch(error => this.handleErrorMessage());
+		//Redirect back to admin page.
+	}
+
+	handleErrorMessage = () => {
+		this.setState({ errorMessage: !this.state.errorMessage });
+	}
+	handleLoader = () => {
+		this.setState({ loader: !this.state.loader })
+	}
+
+	render() {
+		return (
+			<div>
+				<div className="wrapper">
+					<Header />
+					{this.state.errorMessage ?
+						<ErrorMessage handleErrorMessage={this.handleErrorMessage} /> : (null)
+					}
+
+					{this.state.loader ? <div className='loader'>
+						<ReactLoading type={'bubbles'} color={'#003300'} height={150} width={150} /></div> : (null)}
+
+					<Switch>
+						<Route exact path="/admin" render={(props) => <Admin {...props} handleErrorMessage={this.handleErrorMessage}
+							setStateForChangeReservation={this.setStateForChangeReservation}
+							appState={this.state}
+							changeReservation={this.changeReservation}
+							showConfirmationForChangeRes={this.showConfirmationForChangeRes}
+							handleLoader={this.handleLoader}
+							handleChange={this.handleChange}
+							fetchDate={this.fetchDate} />} />
+
+						<Route exact path="/" render={(props) => <Guest {...props} handleErrorMessage={this.handleErrorMessage}
+							countReservations={this.countReservations}
+							fetchDate={this.fetchDate}
+							showGuestForm={this.showGuestForm}
+							fetchGuestId={this.fetchGuestId}
+							checkIfIdExists={this.checkIfIdExists}
+							postReservation={this.postReservation}
+							postGuestAndReservation={this.postGuestAndReservation}
+
+							handleChange={this.handleChange}
+							handleLoader={this.handleLoader}
+							state={this.state} />} />
+						<Route exact path="/changeReservationForm" component={ChangeReservationForm} />
+						<Route exact path="/changeGuestForm" component={ChangeGuestForm} />
+					</Switch>
+				</div>
+			</div >
+		);
+	}
 }
 
 export default App;
