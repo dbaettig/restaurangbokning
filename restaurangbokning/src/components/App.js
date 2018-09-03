@@ -228,7 +228,7 @@ class App extends Component {
 			  <ReactLoading type={'bubbles'} color={'#003300'} height={150} width={150}/></div> : ( null ) }
 
 			<Switch>
-				  <Route exact path="/startPage" component={StartPage}/>
+				  <Route exact path="/" component={StartPage}/>
 				
 				  <Route exact path="/admin" render={(props) => <Admin {...props} handleErrorMessage={this.handleErrorMessage}
 				  setStateForChangeReservation={this.setStateForChangeReservation}
@@ -239,7 +239,7 @@ class App extends Component {
 				  handleChange={this.handleChange}
 				  fetchDate={this.fetchDate}/>}/>
 					  
-				  <Route exact path="/" render={(props) => <Guest {...props} handleErrorMessage={this.handleErrorMessage} 
+				  <Route exact path="/guest" render={(props) => <Guest {...props} handleErrorMessage={this.handleErrorMessage} 
 				  countReservations={this.countReservations} 
 				  fetchDate={this.fetchDate}
 				  showGuestForm={this.showGuestForm}
