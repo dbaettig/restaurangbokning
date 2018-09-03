@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css';
+import StartPage from './StartPage';
 import Guest from './Guest';
 import Admin from './Admin';
 import Header from './Header';
@@ -38,6 +39,12 @@ class App extends Component {
 	fetchDate = (event) => {
 		event.preventDefault();
 		this.handleLoader();
+		
+		let postData = {
+			date: this.state.date,
+			
+		}
+		
 		let formValues = JSON.stringify(this.state);
 		fetch('http://localhost:8888/fetchDate.php?formData=' + formValues, {
 			method: 'GET',
@@ -199,6 +206,8 @@ class App extends Component {
 			  <ReactLoading type={'bubbles'} color={'#003300'} height={150} width={150}/></div> : ( null ) }
 
 			<Switch>
+				  <Route exact path="/startPage" component={StartPage}/>
+				
 				  <Route exact path="/admin" render={(props) => <Admin {...props} handleErrorMessage={this.handleErrorMessage}
 				  setStateForChangeReservation={this.setStateForChangeReservation}
 				  appState={this.state}
