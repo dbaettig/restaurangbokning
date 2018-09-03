@@ -11,8 +11,8 @@ class Header extends Component {
             <div>
                 <div>
 					<ul>
-						<li> <NavLink activeClassName="linkIsActive" exact={true} to="/startpage">Start</NavLink> </li>
-                        <li> <NavLink activeClassName="linkIsActive" exact={true} to="/">Make a reservation</NavLink> </li>
+						<li> <NavLink activeClassName="linkIsActive" exact={true} to="/">Start</NavLink> </li>
+                        <li> <NavLink activeClassName="linkIsActive" exact={true} to="/guest">Make a reservation</NavLink> </li>
 						<li> <NavLink activeClassName="linkIsActive" exact={true} to="/contact">Contact</NavLink> </li>
                         <li> <NavLink activeClassName="linkIsActive" to="/admin">Admin</NavLink> </li>
 					</ul>
