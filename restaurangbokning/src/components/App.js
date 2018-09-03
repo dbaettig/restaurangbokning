@@ -3,6 +3,7 @@ import '../App.css';
 import StartPage from './StartPage';
 import Guest from './Guest';
 import Admin from './Admin';
+import Contact from './Contact';
 import Header from './Header';
 import ErrorMessage from './ErrorMessage';
 import ChangeReservationForm from './ChangeReservationForm';
@@ -225,10 +226,10 @@ class App extends Component {
 				  checkIfIdExists={this.checkIfIdExists}
 				  postReservation={this.postReservation}
 				  postGuestAndReservation={this.postGuestAndReservation}
-				  
 				  handleChange={this.handleChange}
 				  handleLoader={this.handleLoader}
 				  state={this.state} />}/>
+				  <Route exact path="/contact" component={Contact}/>
 				  <Route exact path="/changeReservationForm" component={ChangeReservationForm}/>
 				  <Route exact path="/changeGuestForm" component={ChangeGuestForm}/>
 			</Switch>
