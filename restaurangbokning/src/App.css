@@ -9,18 +9,19 @@
 
 header{
   width: 99vw;
-  background: url(../src/images/greenLeaf.png); 
+  background: url(../src/images/table.jpg); 
   background-repeat: no-repeat;
   background-size: cover;
-  height:40vh;
+  height:50vh;
  text-align: center;
 
- 
+
 }
+
 
 h1{
   font-family: 'Paytone One', sans-serif;
-  color:whitesmoke;
+  color:#2F3030;
   font-size:4em; 
   letter-spacing: 5px;
   padding-top:100px;
@@ -127,16 +128,27 @@ border-style:none;
  } 
 
 footer{
-  height:200px;
+  height:100px;
   margin-top:50px;
   background-color:whitesmoke;
   width:100vw;
+  text-align:center;
+
 }
 
 @media only screen 
   and (min-device-width: 768px)  {
 
-
+    header{
+      width: 99vw;
+      background: url(../src/images/table.jpg); 
+      background-repeat: no-repeat;
+      background-size: cover;
+      height:50vh;
+     text-align: center;
+    background-position:  100% 75%;
+    
+    }
     .formWrapper{
       display:none;
     }
@@ -176,6 +188,7 @@ footer{
 
  
 }
+
 
 @media screen 
   and (min-device-width: 1024px) {

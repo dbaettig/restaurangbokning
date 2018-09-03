@@ -8,7 +8,7 @@ class Footer extends Component {
 
             <div>
                 <footer>
-                    This is a footer!
+                    <h2> CONTACT LÄNKEN HÄR </h2>
                 </footer>
             </div>
         )
