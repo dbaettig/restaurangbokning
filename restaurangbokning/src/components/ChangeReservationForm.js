@@ -19,6 +19,7 @@ class ChangeReservationForm extends Component {
 					) : (
 						<div>
 							<form method="POST" className="dateForm" onSubmit={this.props.fetchDate}>
+								<h2>Change reservation</h2>
 								<p>
 									Your previous reservation:<br />
 									{this.props.appState.participants} people

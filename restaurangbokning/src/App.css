@@ -64,10 +64,9 @@ h1 a{
  text-decoration:none;
 }
 
-h2{
+h2, h3{
   font-family: 'Paytone One', sans-serif;
-  color:#2F3030;
-  font-size:2.6em; 
+  color:#2F3030; 
   letter-spacing: 3px;
 }
 
@@ -89,28 +88,28 @@ h2{
 }
 p{
   font-family:'Josefin Sans', sans-serif;
-color:black;
-}
+	color:black;
+	}
 .timeButtons{
-text-align: center;
-margin:20px;
+	text-align: center;
+	margin:20px;
 
-}
+	}
 .timeButtons button{
-margin:5px;
-}
+	margin:5px;
+	}
 
 button{
-width:50%;
-margin:0px auto;
-border-radius:2px;
-color:black;
-cursor:pointer;
-border-style:none;
-height:30px;
-font-family:'Open Sans', sans-serif ;
-background: white;
-}
+	width:50%;
+	margin:0px auto;
+	border-radius:2px;
+	color:black;
+	cursor:pointer;
+	border-style:none;
+	height:30px;
+	font-family:'Open Sans', sans-serif ;
+	background: white;
+	}
 
 button:hover{
   color: white;
@@ -152,6 +151,10 @@ border-style:none;
   color: black;
   height: 200px;
   width: 200px;
+}
+.changeRes {
+	text-align: center;
+	padding: 5%;
 }
 .errorMessage {
   background-color: white;
@@ -322,7 +325,6 @@ footer img{
       background-color: whitesmoke;
       -webkit-box-shadow: 0px 4px 37px -12px rgb(18, 13, 26); 
       width:30%;
-      //height:250px;
       justify-content:center;
       margin-top:40px;
   
