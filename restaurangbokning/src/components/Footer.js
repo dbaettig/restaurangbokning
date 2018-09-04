@@ -11,21 +11,22 @@ class Footer extends Component {
 
             <div>
                 <footer>
-                    <div className="socialIcons">
+                    <div className="social">
                         <a href="https://instagram.com"><img src={instagram} alt="instagramIcon"></img></a>
                         <a href="https://facebook.com"><img src={facebook} alt=" facebookIcon"></img></a>
                         <a href="mailto:info@thegreenery.com"><img src={email} alt="emailIcon"></img></a>
-                    </div>
-                    <p>
-                        OPENING HOURS<br />
-                        Monday - Thursday 6pm-11pm
+
+                        <p>
+                            OPENING HOURS<br />
+                            Monday - Thursday 6pm-11pm
 					<br />
-                        Friday - Sunday 6pm-12pm
+                            Friday - Sunday 6pm-12pm
 					<br />
-                        Closed for most major holidays
+                            Closed for most major holidays
 				</p>
+                    </div>
                 </footer>
-            </div>
+            </div >
         )
 
     }
