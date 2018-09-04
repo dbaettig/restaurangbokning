@@ -17,7 +17,8 @@ class Footer extends Component {
                         <a href="mailto:info@thegreenery.com"><img src={email} alt="emailIcon"></img></a>
 
                         <p>
-                            OPENING HOURS<br />
+                            <h4>OPENING HOURS</h4>
+                            <br />
                             Monday - Thursday 6pm-11pm
 					<br />
                             Friday - Sunday 6pm-12pm

@@ -70,6 +70,10 @@ h2{
   font-size:2.6em; 
   letter-spacing: 3px;
 }
+h4{
+  -webkit-margin-before: 0em;
+  -webkit-margin-after: 0em;
+}
 
 
 .formWrapper{
@@ -78,6 +82,7 @@ h2{
   width:80%;
   justify-content:center;
   margin-top:70px;
+  padding:20px;
 
 
 }
@@ -101,15 +106,16 @@ margin:5px;
 }
 
 button{
-width:50%;
+width:100px;
 margin:0px auto;
 border-radius:2px;
 color:black;
 cursor:pointer;
 border-style:none;
-height:30px;
+padding:10px;
 font-family:'Open Sans', sans-serif ;
 background: white;
+
 }
 
 button:hover{
@@ -126,7 +132,13 @@ button:hover{
 	height: 37px;
 	margin: 3px;
 }
+.cancelButtonWrapper{
+  display:flex;
 
+}
+#cancelButton{
+  margin-bottom:20px;
+}
 input {
   max-width:100%;
 border-radius:2px;
@@ -236,7 +248,6 @@ footer img{
       background: url(../src/images/table.jpg); 
       background-repeat: no-repeat;
       background-size: cover;
-      height:25vh;
      text-align: center;
     background-position:  100% 75%;
     
@@ -313,16 +324,22 @@ footer img{
       background: url(../src/images/table.jpg); 
       background-repeat: no-repeat;
       background-size: cover;
-      height:35vh;
      text-align: center;
     background-position:100% 75%;
     
     }
+
+    h1{
+      display:flex;
+      justify-content:center;
+      align-items: center;
+      font-size:3.5em;
+    }
+
      .formWrapper{
       background-color: whitesmoke;
       -webkit-box-shadow: 0px 4px 37px -12px rgb(18, 13, 26); 
       width:30%;
-      height:250px;
       justify-content:center;
       margin-top:40px;
   
@@ -335,16 +352,14 @@ footer img{
        width: 80vw; 
        text-align: center;
        margin-top:-50px;
-
-
-
     }
     .displayBig img{
-      width:45%;
+      width:60%;
       -webkit-animation: scale-in-top 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
       animation: scale-in-top 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
     
     }
+
 
     footer{
       display: flex;
@@ -352,6 +367,11 @@ footer img{
       justify-content: center;
       margin-top:100px; 
 
+    }
+    footer img{
+      width:10%;
+      padding:20px;
+  
     }
   }
 
