@@ -37,8 +37,7 @@ class Admin extends Component {
 		let sortedData = data.sort((a, b) => {
     					let dateA = new Date(a.date), dateB = new Date(b.date);
 						return dateA - dateB;
-					});
-		console.log(sortedData);
+						});
         let reservations = sortedData.map((reservation) =>
             <div key={reservation.resId}>
                 Datum: {reservation.date} {reservation.time} {reservation.participants} {reservation.firstName} ID: {reservation.resId}
