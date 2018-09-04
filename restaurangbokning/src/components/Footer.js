@@ -8,7 +8,15 @@ class Footer extends Component {
 
             <div>
                 <footer>
-                    <h2> CONTACT LÄNKEN HÄR </h2>
+                    <h2> SOCIAL </h2>
+                    <p>
+                        OPENING HOURS<br />
+                        Monday - Thursday 6pm-11pm
+					<br />
+                        Friday - Sunday 6pm-12pm
+					<br />
+                        Closed for most major holidays
+				</p>
                 </footer>
             </div>
         )

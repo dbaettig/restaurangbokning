@@ -1,18 +1,51 @@
-.wrapper{
+<!DOCTYPE html>
+<!-- saved from url=(0027)http://localhost:3000/guest -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="./Vår Restaurang_files/css" rel="stylesheet">
+  <meta name="theme-color" content="#000000">
+  <!--
+      manifest.json provides metadata used when your web app is added to the
+      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+    -->
+  <link rel="manifest" href="http://localhost:3000/manifest.json">
+  <link rel="shortcut icon" href="http://localhost:3000/favicon.ico">
+
+  <!--
+      Notice the use of  in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+  <title>Vår Restaurang</title>
+<style type="text/css">body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+</style><style type="text/css">.wrapper{
+  display:-ms-flexbox;
   display:flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction:column;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-direction:column;
+      flex-direction:column;
   width:100vw;
   
 }
 
 header{
   width: 99vw;
-  background: url(../src/images/table.jpg); 
+  background: url(/static/media/table.1f2a7dc5.jpg); 
   background-repeat: no-repeat;
   background-size: cover;
-  height:30vh;
+  height:50vh;
  text-align: center;
 
 
@@ -20,9 +53,12 @@ header{
 
 ul{
   list-style: none;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-pack: center;
+      justify-content: center;
   
 }
 
@@ -36,8 +72,8 @@ li a{
 }
 
 .linkIsActive{
-  text-decoration: underline #D9350B;
-  color:#2F3030;
+  background-color:#D9350B;
+  color:whitesmoke;
 
 }
 
@@ -46,15 +82,11 @@ h1{
   color:#2F3030;
   font-size:4em; 
   letter-spacing: 5px;
-  padding-top:150px;
+  padding-top:100px;
   height:230px;
   -webkit-margin-before: 0em;
   -webkit-margin-after: 0em;
 
-}
-h1 a{
-  color:#2F3030;
- text-decoration:none;
 }
 
 
@@ -62,14 +94,17 @@ h1 a{
   background-color: whitesmoke;
   -webkit-box-shadow: 0px 4px 37px -12px rgb(18, 13, 26); 
   width:80%;
-  justify-content:center;
+  -ms-flex-pack:center;
+      justify-content:center;
   margin-top:70px;
 
 
 }
 .dateForm{
+  display:-ms-flexbox;
   display:flex;
-  flex-direction:column;
+  -ms-flex-direction:column;
+      flex-direction:column;
   margin:15px;
 
 }
@@ -145,7 +180,9 @@ border-style:none;
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   width: 40%;
 }
 
@@ -170,13 +207,6 @@ border-style:none;
 
  } 
 
- .contact{
-text-align:center;
- }
- .contact img{
-width:30%;
- }
-
 footer{
   height:200px;
   margin-top:50px;
@@ -188,7 +218,8 @@ footer{
 
 .loader{
   position: absolute;
-  align-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
   top: 50%;
 }
 
@@ -199,22 +230,20 @@ footer{
 
     header{
       width: 99vw;
-      background: url(../src/images/table.jpg); 
+      background: url(/static/media/table.1f2a7dc5.jpg); 
       background-repeat: no-repeat;
       background-size: cover;
-      height:30vh;
+      height:50vh;
      text-align: center;
     background-position:  100% 75%;
     
     }
-
-    h1{
-      padding-top:150px;
-    }
   
     .wrapper{
+      display:-ms-flexbox;
       display:flex;
-      flex-direction:column;
+      -ms-flex-direction:column;
+          flex-direction:column;
       width:100vw;
     }
     
@@ -258,7 +287,8 @@ footer{
       -webkit-box-shadow: 0px 4px 37px -12px rgb(18, 13, 26); 
       width:30%;
       height:250px;
-      justify-content:center;
+      -ms-flex-pack:center;
+          justify-content:center;
       margin-top:40px;
   
     }
@@ -298,3 +328,24 @@ footer{
 }
 
 
+</style><script type="text/javascript" charset="utf-8" src="./Vår Restaurang_files/0.32b3a62d6c3d29b5d710.hot-update.js"></script></head>
+
+<body>
+  <noscript>
+    You need to enable JavaScript to run this app.
+  </noscript>
+  <div id="root"><div><div class="wrapper"><div><div><ul><li> <a href="http://localhost:3000/">Start</a> </li><li> <a class="linkIsActive" aria-current="page" href="http://localhost:3000/guest">Make a reservation</a> </li><li> <a href="http://localhost:3000/contact">Contact</a> </li><li> <a href="http://localhost:3000/admin">Admin</a> </li></ul></div><header><h1>The Greenery</h1></header></div><div class="formWrapper"><div><form method="POST" class="dateForm"><input type="number" min="1" max="6" required="" name="participants" placeholder="2 People"><input type="date" required="" min="2018-09-03" name="date"><button type="submit" value="submit">SEARCH AVAILABILITY</button></form><div class="timeButtons hidden"><p>Available sittings:</p><p>There are no available tables at 06:00 PM.</p><p>There are no available tables at 09:00 PM.</p></div></div></div><div><footer><h2> SOCIAL </h2></footer></div></div></div></div>
+  <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+
+<script type="text/javascript" src="./Vår Restaurang_files/bundle.js"></script>
+
+</body></html>

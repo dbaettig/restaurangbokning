@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import '../App.css';
 import {
-  NavLink
+    NavLink,
+    Link
 } from 'react-router-dom';
 
 class Header extends Component {
@@ -10,18 +11,18 @@ class Header extends Component {
         return (
             <div>
                 <div>
-					<ul>
-						<li> <NavLink activeClassName="linkIsActive" exact={true} to="/">Start</NavLink> </li>
+                    <ul>
+                        <li> <NavLink activeClassName="linkIsActive" exact={true} to="/">Start</NavLink> </li>
                         <li> <NavLink activeClassName="linkIsActive" exact={true} to="/guest">Make a reservation</NavLink> </li>
-						<li> <NavLink activeClassName="linkIsActive" exact={true} to="/contact">Contact</NavLink> </li>
+                        <li> <NavLink activeClassName="linkIsActive" exact={true} to="/contact">Contact</NavLink> </li>
                         <li> <NavLink activeClassName="linkIsActive" to="/admin">Admin</NavLink> </li>
-					</ul>
-				</div>
+                    </ul>
+                </div>
                 <header>
-                    <h2>BOKA BORD</h2>
-                </header>   
+                    <h1><Link to="/">The Greenery</Link></h1>
+                </header>
 
-            </div>
+            </div >
         )
     }
 }
