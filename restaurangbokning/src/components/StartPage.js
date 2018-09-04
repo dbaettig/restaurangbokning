@@ -1,23 +1,32 @@
 import React, { Component } from 'react';
 import '../App.css';
+import menu from '../images/menu.png'
 
 class StartPage extends Component {
 
-    render() {
-        return (
-            <div>
-                <h1>This is the startpage</h1>
-				<p>
-					OPENING HOURS<br/>
-					Monday - Thursday 6pm-11pm
-					<br/>
-					Friday - Sunday 6pm-12pm
-					<br/>
-					Closed for most major holidays
-				</p>
-            </div>
-        )
-    }
+	state = {
+		menu: false
+	}
+
+
+	handleSize = (event) => {
+		this.setState({
+			menu: !this.state.menu
+		});
+	}
+
+	render() {
+		let menuSize = 'displaySmall';
+		this.state.menu ? menuSize = "displayBig" : menuSize = 'displaySmall';
+
+		return (
+			<div>
+				<div className={menuSize}>
+					<img src={menu} alt={"menu"} onClick={this.handleSize} />
+				</div>
+			</div>
+		)
+	}
 }
 
 export default StartPage;
