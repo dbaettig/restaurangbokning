@@ -3,50 +3,78 @@
   align-items: center;
   justify-content: center;
   flex-direction:column;
-  width:100%;
-  margin:5px;
+  width:100vw;
   
 }
-.formWrapper{
-  display:flex;
-  background-color:whitesmoke;
-  box-shadow: 0px 7px 37px -12px  rgb(18, 13, 26);
-  width:30%;
-  justify-content:center;
-  margin:-50px;
 
-
-
-}
 header{
   width: 99vw;
-  background: url(../src/images/greenLeaf.png);
+  background: url(../src/images/table.jpg); 
   background-repeat: no-repeat;
   background-size: cover;
-  height:300px;
+  height:30vh;
  text-align: center;
 
- 
+
 }
 
-h2{
+ul{
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  
+}
+
+li a{
+  font-family:'Josefin Sans', sans-serif;
+  font-size:1.4em;
+  margin:20px;
+  color:#2F3030;
+  text-decoration: none;
+  padding:7px;
+}
+
+.linkIsActive{
+  text-decoration: underline #D9350B;
+  color:#2F3030;
+
+}
+
+h1{
   font-family: 'Paytone One', sans-serif;
-  color:whitesmoke;
-  font-size:3.3em; 
+  color:#2F3030;
+  font-size:4em; 
   letter-spacing: 5px;
-  padding-top:100px;
-  height:250px;
+  padding-top:150px;
+  height:230px;
   -webkit-margin-before: 0em;
   -webkit-margin-after: 0em;
+
+}
+h1 a{
+  color:#2F3030;
+ text-decoration:none;
 }
 
+
+.formWrapper{
+  background-color: whitesmoke;
+  -webkit-box-shadow: 0px 4px 37px -12px rgb(18, 13, 26); 
+  width:80%;
+  justify-content:center;
+  margin-top:70px;
+
+
+}
 .dateForm{
   display:flex;
   flex-direction:column;
-  margin:10px;
+  margin:15px;
+
 }
 p{
-  font-family: 'Open Sans', sans-serif ;
+  font-family:'roboto';
 color:black;
 }
 .timeButtons{
@@ -86,6 +114,8 @@ border-radius:2px;
 border-style:none;
   margin:10px;
   height:30px;
+  font-size:0.9em;
+  padding:5px;
 }
 
 .displayBookings ul{
@@ -126,12 +156,145 @@ border-style:none;
 .display {
 	display: block;
 }
+
+
+.displaySmall, .displayBig{
+ text-align: center;
+ width:99%;
+ margin-top:-50px;
+} 
+
+.displaySmall img, .displayBig img{
+  width:80%;
+  -webkit-box-shadow: 0px 4px 30px -7px  grey; 
+
+ } 
+
+ .contact{
+text-align:center;
+ }
+ .contact img{
+width:30%;
+ }
+
+footer{
+  height:200px;
+  margin-top:50px;
+  background-color:whitesmoke;
+  width:100vw;
+  text-align:center;
+
+}
+
 .loader{
   position: absolute;
   align-content: center;
   top: 50%;
 }
 
-.linkIsActive {
-  color: red;
+
+
+@media only screen 
+  and (min-device-width: 768px)  {
+
+    header{
+      width: 99vw;
+      background: url(../src/images/table.jpg); 
+      background-repeat: no-repeat;
+      background-size: cover;
+      height:30vh;
+     text-align: center;
+    background-position:  100% 75%;
+    
+    }
+
+    h1{
+      padding-top:150px;
+    }
+  
+    .wrapper{
+      display:flex;
+      flex-direction:column;
+      width:100vw;
+    }
+    
+
+    .displaySmall{
+      text-align: center;
+     margin-top:-50px;
+      /* width: 100vw; */
+      height:auto;
+
+    }
+    .displaySmall img{
+      width:50%;
+      cursor:pointer;
+      -webkit-box-shadow: 0px 4px 30px -7px  grey; 
+    
+  }
+    .displayBig{
+      text-align: right;
+       width: 80vw; 
+       text-align: center;
+
+    }
+    .displayBig img{
+      width:50%;
+      -webkit-animation: scale-in-top 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+      animation: scale-in-top 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  
+    
+    }
+
+ 
 }
+
+
+@media screen 
+  and (min-device-width: 1024px) {
+
+     .formWrapper{
+      background-color: whitesmoke;
+      -webkit-box-shadow: 0px 4px 37px -12px rgb(18, 13, 26); 
+      width:30%;
+      height:250px;
+      justify-content:center;
+      margin-top:40px;
+  
+    }
+  }
+
+ @-webkit-keyframes scale-in-top {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    -webkit-transform-origin: 50% 0%;
+            transform-origin: 50% 0%;
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-transform-origin: 50% 0%;
+            transform-origin: 50% 0%;
+    opacity: 1;
+  }
+}
+@keyframes scale-in-top {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    -webkit-transform-origin: 50% 0%;
+            transform-origin: 50% 0%;
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-transform-origin: 50% 0%;
+            transform-origin: 50% 0%;
+    opacity: 1;
+  }
+}
+
+

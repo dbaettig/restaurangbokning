@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import '../App.css';
+import greendish from '../images/greendish.jpg'
 
 class Contact extends Component {
 
-    render() {
-        return (
-            <div>
-                <h1>Please, contact us!</h1>
+	render() {
+		return (
+			<div className="contact">
+				<h2>Please, contact us!</h2>
 				<p>
 					Our Restaurant
 					Tulegatan 41
@@ -15,9 +16,10 @@ class Contact extends Component {
 				<p>
 					08-123 95 99
 				</p>
-            </div>
-        )
-    }
+				<img src={greendish} />
+			</div>
+		)
+	}
 }
 
 export default Contact;
