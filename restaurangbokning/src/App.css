@@ -1,4 +1,3 @@
-
 .wrapper{
   display:flex;
   align-items: center;
@@ -77,18 +76,19 @@ h4{
 
 .formWrapper{
   background-color: whitesmoke;
-  -webkit-box-shadow: 0px 4px 37px -12px rgb(18, 13, 26); 
+  -webkit-box-shadow: 0px 4px 30px -7px  grey; 
   width:80%;
   justify-content:center;
   margin-top:70px;
   padding:20px;
+  margin-bottom:20px;
 }
 
 .dateForm{
   display:flex;
   flex-direction:column;
   margin:15px;
-
+  text-align:center;
 
 }
 p{
@@ -119,10 +119,6 @@ background: white;
 font-weight:700;
 }
 
-button:hover{
-  color: white;
-  background-color:black;
-}
 
 .adminButton {
   width: 100%;
@@ -238,7 +234,7 @@ margin:5px;
  }
 
 footer{
-  height:200px;
+  height:250px;
   margin-top:50px;
   background-color:whitesmoke;
   width:100vw;
@@ -296,11 +292,13 @@ footer img{
        margin:10px;
     }
     
+  .formWrapper{
+    width:50%;
+    }
 
     .displaySmall{
       text-align: center;
      margin-top:-50px;
-      /* width: 100vw; */
       height:auto;
 
 
@@ -330,7 +328,15 @@ footer img{
       overflow: scroll;
     }
 
-
+    button:hover{
+      color: white;
+      background-color:black;
+    }
+    #deleteButton:hover{
+    background-color:#D9350B;
+    color:whitesmoke;
+    border:none;
+    }
     .contact img{
       width:40%;
        }
@@ -378,15 +384,6 @@ footer img{
       align-items: center;
       font-size:3.5em;
     }
-
-     .formWrapper{
-      background-color: whitesmoke;
-      -webkit-box-shadow: 0px 4px 37px -12px rgb(18, 13, 26); 
-      width:20%;
-      justify-content:center;
-      margin-top:40px;
-  
-    }
     .displaySmall img{
       width:60%;
     }
@@ -410,14 +407,17 @@ footer img{
       margin-top:-80px;
     }
 
+    .formWrapper{
+      width:30%;
+    }
+
     .contact img{
       width:30%;
        }
     footer{
       display: flex;
       align-items: center;
-      justify-content: center;
-      margin-top:100px; 
+      justify-content: center;  
 
     }
     footer img{

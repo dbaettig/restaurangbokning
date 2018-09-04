@@ -203,7 +203,6 @@ class App extends Component {
         window.location.assign("/admin");
       })
       .catch(error => { this.handleErrorMessage(); this.handleLoader(); });
-    //Redirect back to admin page.
   }
 
   handleErrorMessage = () => {

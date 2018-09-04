@@ -29,7 +29,6 @@ class Admin extends Component {
             .then((data) => {
                 this.props.handleLoader();
                 this.displayReservations(data);
-                console.log(data);
             })
             .catch(error => { this.handleErrorMessage(); this.handleLoader(); });
     }
@@ -43,7 +42,7 @@ class Admin extends Component {
             <div className="eachReservation" key={reservation.resId}>
                 <p>{reservation.date} {reservation.time} {reservation.participants} people <br />
                     {reservation.firstName} {reservation.lastName}</p>
-                <button className="reservationsButton" name={reservation.resId} onClick={this.deleteReservation}>Delete reservation</button>
+                <button className="reservationsButton" id="deleteButton" name={reservation.resId} onClick={this.deleteReservation}>Delete reservation</button>
                 <button className="reservationsButton" name={reservation.resId} onClick={() => { this.openChangeReservationForm(reservation) }}>Change reservation</button>
                 <button className="reservationsButton" onClick={() => { this.openChangeGuestForm(reservation) }}>Change guest</button>
             </div>
