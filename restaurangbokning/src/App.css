@@ -287,7 +287,7 @@ footer img{
   
     
     }
-    footer{
+    /* footer{
       height:250px;
       display: flex;
       align-items: center;
@@ -297,9 +297,9 @@ footer img{
       right:0;
       bottom:0;
 
-    }
+    } */
     footer img{
-      width:10%;
+      width:5%;
       padding:20px;
   
     }
@@ -328,7 +328,7 @@ footer img{
        width: 80vw; 
        text-align: center;
        margin-top:-50px;
-height:100vh;
+      height:100vh;
 
 
     }
@@ -346,10 +346,7 @@ height:100vh;
       align-items: center;
       justify-content: center;
       margin-top:100px;
-      position:absolute;
-      left:0;
-      right:0;
-      bottom:0;
+      height:200px;    
 
     }
   }
