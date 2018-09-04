@@ -107,6 +107,9 @@ button:hover{
   width: 100%;
   text-align: center;
 }
+.reservationsButton {
+	width: 30%;
+}
 
 input {
   max-width:100%;

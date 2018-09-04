@@ -41,10 +41,11 @@ class Admin extends Component {
 						});
         let reservations = sortedData.map((reservation) =>
             <div key={reservation.resId}>
-                {reservation.date} {reservation.time} {reservation.participants} people <br /> {reservation.firstName} {reservation.lastName}
-                <button name={reservation.resId} onClick={this.deleteReservation}>Delete reservation</button>
-                <button name={reservation.resId} onClick={() => {this.openChangeReservationForm(reservation)}}>Change reservation</button> 
-				<button onClick={() => {this.openChangeGuestForm(reservation)}}>Change guest</button> 
+                {reservation.date} {reservation.time} {reservation.participants} people <br /> 
+				{reservation.firstName} {reservation.lastName} <br />
+                <button className="reservationsButton" name={reservation.resId} onClick={this.deleteReservation}>Delete reservation</button>
+                <button className="reservationsButton" name={reservation.resId} onClick={() => {this.openChangeReservationForm(reservation)}}>Change reservation</button> 
+				<button className="reservationsButton" onClick={() => {this.openChangeGuestForm(reservation)}}>Change guest</button> 
             </div>
         );
 		
