@@ -5,7 +5,6 @@ import Guest from './Guest';
 import Admin from './Admin';
 import Contact from './Contact';
 import Header from './Header';
-import Menu from './Menu';
 import Footer from './Footer';
 import ErrorMessage from './ErrorMessage';
 import ChangeReservationForm from './ChangeReservationForm';
