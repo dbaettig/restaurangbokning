@@ -28,7 +28,8 @@ class ChangeReservationForm extends Component {
 								<p>Change reservation:</p>
 								<input type="number" min="1" max="6" name="participants" placeholder={this.props.appState.participants} onChange={this.props.handleChange} />
 								<input type="date" required min={today} placeholder={this.props.appState.date} name="date" onChange={this.props.handleChange} />
-								<button type="submit" value="submit">Search Availability</button>
+								<button type="submit" value="submit">Search Availability</button><br />
+								<button onClick={() => {window.location.assign("/admin");}}>Cancel</button>
 							</form>
 
 							<div className={"timeButtons " + buttonStyle}>

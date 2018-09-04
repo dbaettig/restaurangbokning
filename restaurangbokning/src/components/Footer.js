@@ -15,16 +15,14 @@ class Footer extends Component {
                         <a href="https://instagram.com"><img src={instagram} alt="instagramIcon"></img></a>
                         <a href="https://facebook.com"><img src={facebook} alt=" facebookIcon"></img></a>
                         <a href="mailto:info@thegreenery.com"><img src={email} alt="emailIcon"></img></a>
-
+						<h4>OPENING HOURS</h4>
                         <p>
-                            <h4>OPENING HOURS</h4>
-                            <br />
                             Monday - Thursday 6pm-11pm
-					<br />
+							<br />
                             Friday - Sunday 6pm-12pm
-					<br />
+							<br />
                             Closed for most major holidays
-				</p>
+							</p>
                     </div>
                 </footer>
             </div >
