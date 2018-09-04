@@ -33,7 +33,7 @@ li{
 }
 li a{
   font-family:'Josefin Sans', sans-serif;
-  font-size:1.4em;
+  font-size:1.2em;
   margin:10px;
   color:#2F3030;
   text-decoration: none;
@@ -65,7 +65,7 @@ h1 a{
 }
 
 h2, h3, h4{
-  font-family: 'Paytone One', sans-serif;
+  font-family: 'Lato', sans-serif;
   color:#2F3030; 
   letter-spacing: 3px;
 }
@@ -84,17 +84,17 @@ h4{
   padding:20px;
 }
 
-
-
 .dateForm{
   display:flex;
   flex-direction:column;
   margin:15px;
 
+
 }
 p{
   font-family:'Josefin Sans', sans-serif;
-	color:black;
+  color:black;
+  font-size:1.2em;
 	}
 .timeButtons{
 	text-align: center;
@@ -103,21 +103,21 @@ p{
 	}
 .timeButtons button{
 	margin:5px;
-	}
+  }
+
 
 button{
 width:100px;
-margin:0px auto;
+margin:5px auto;
 border-radius:2px;
 color:black;
 cursor:pointer;
 border-style:none;
 padding:10px;
-font-family:'Open Sans', sans-serif ;
+font-family:'lato', sans-serif ;
 background: white;
-
+font-weight:700;
 }
-
 
 button:hover{
   color: white;
@@ -140,13 +140,15 @@ height:100%;
   margin-bottom:20px;
 }
 input {
-  max-width:100%;
-border-radius:2px;
-border-style:none;
+  background-color:white;
+  width:auto;
+  border-radius:2px;
+  border-style:none;
   margin:10px;
   height:30px;
   font-size:0.9em;
   padding:5px;
+  font-family:'lato', sans-serif;
 }
 
 .displayBookings ul{
@@ -170,10 +172,9 @@ border-style:none;
 	padding: 5%;
 }
 .errorMessage {
-  background-color: white;
-  color: #5c3927;
-  border: 4px solid #5c3927;
-  border-radius: 15px;
+  background: white;
+  border-radius:5px;
+  box-shadow:0px 6px 30px -7px  grey;
   text-align: center;
   padding: 3%;
   min-height: 15vh;    
@@ -181,9 +182,20 @@ border-style:none;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 40%;
+  width: 50%;
 }
-
+.errorMessage p {
+  color:#D9350B;
+  font-size:1.2em;
+}
+.errorMessage img{
+  width:60%;
+  margin-top:-50px;
+}
+.errorMessage button{
+background-color:#D9350B;
+color:whitesmoke;
+}
 
 .hidden {
 	display: none;
@@ -205,11 +217,24 @@ border-style:none;
 
  } 
 
- .contact{
-text-align:center;
+ .eachReservation{
+  margin-bottom:70px;
  }
+
+ .contact{
+    display:flex;
+    flex-direction:column;
+   align-items: center;
+   text-align:center;
+
+ }
+ .contact p{
+ letter-spacing:2px;
+ line-height: 1.6;
+   }
  .contact img{
-width:30%;
+width:60%;
+margin:5px;
  }
 
 footer{
@@ -218,6 +243,9 @@ footer{
   background-color:whitesmoke;
   width:100vw;
   text-align:center;
+  padding-bottom:20px;
+  line-height: 1.6;
+  
 
 
 }
@@ -301,6 +329,19 @@ footer img{
     .displayBookings{
       overflow: scroll;
     }
+
+
+    .contact img{
+      width:40%;
+       }
+
+       .errorMessage {
+        width: 20%;
+      }
+      .errorMessage img{
+        margin-top:-60px;
+      }
+
     footer{
       height:250px;
       display: flex;
@@ -341,7 +382,7 @@ footer img{
      .formWrapper{
       background-color: whitesmoke;
       -webkit-box-shadow: 0px 4px 37px -12px rgb(18, 13, 26); 
-      width:30%;
+      width:20%;
       justify-content:center;
       margin-top:40px;
   
@@ -356,13 +397,22 @@ footer img{
        margin-top:-50px;
     }
     .displayBig img{
-      width:60%;
+      width:50%;
       -webkit-animation: scale-in-top 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
       animation: scale-in-top 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
     
     }
 
+    .errorMessage {
+      width: 15%;
+    }
+    .errorMessage img{
+      margin-top:-80px;
+    }
 
+    .contact img{
+      width:30%;
+       }
     footer{
       display: flex;
       align-items: center;

@@ -6,16 +6,16 @@ import ChangeGuestForm from './ChangeGuestForm';
 class Admin extends Component {
     state = {
         changeReservationForm: false,
-		changeGuestForm: false,
-		reservations: [],
+        changeGuestForm: false,
+        reservations: [],
         reservationId: "",
         participants: "",
-		firstName: "",
-		lastName: "",
-		phone: "",
-		email: "",
-		id: ""
-		
+        firstName: "",
+        lastName: "",
+        phone: "",
+        email: "",
+        id: ""
+
     }
 
     componentDidMount() {
@@ -31,24 +31,24 @@ class Admin extends Component {
                 this.displayReservations(data);
                 console.log(data);
             })
-            .catch(error => {this.handleErrorMessage(); this.handleLoader();});
+            .catch(error => { this.handleErrorMessage(); this.handleLoader(); });
     }
 
     displayReservations = (data) => {
-		let sortedData = data.sort((a, b) => {
-    					let dateA = new Date(a.date), dateB = new Date(b.date);
-						return dateA - dateB;
-						});
+        let sortedData = data.sort((a, b) => {
+            let dateA = new Date(a.date), dateB = new Date(b.date);
+            return dateA - dateB;
+        });
         let reservations = sortedData.map((reservation) =>
-            <div key={reservation.resId}>
-                <p>{reservation.date} {reservation.time} {reservation.participants} people <br /> 
-				{reservation.firstName} {reservation.lastName}</p> 
+            <div className="eachReservation" key={reservation.resId}>
+                <p>{reservation.date} {reservation.time} {reservation.participants} people <br />
+                    {reservation.firstName} {reservation.lastName}</p>
                 <button className="reservationsButton" name={reservation.resId} onClick={this.deleteReservation}>Delete reservation</button>
-                <button className="reservationsButton" name={reservation.resId} onClick={() => {this.openChangeReservationForm(reservation)}}>Change reservation</button> 
-				<button className="reservationsButton" onClick={() => {this.openChangeGuestForm(reservation)}}>Change guest</button> 
+                <button className="reservationsButton" name={reservation.resId} onClick={() => { this.openChangeReservationForm(reservation) }}>Change reservation</button>
+                <button className="reservationsButton" onClick={() => { this.openChangeGuestForm(reservation) }}>Change guest</button>
             </div>
         );
-		
+
         this.setState({ reservations: reservations })
     }
 
@@ -57,19 +57,19 @@ class Admin extends Component {
         this.setState({
             changeReservationForm: true
         });
-		 this.props.setStateForChangeReservation(reservation.participants, reservation.date, reservation.time, reservation.resId)
+        this.props.setStateForChangeReservation(reservation.participants, reservation.date, reservation.time, reservation.resId)
     }
-	
-	 openChangeGuestForm = (reservation) => {
+
+    openChangeGuestForm = (reservation) => {
         this.setState({
             changeGuestForm: true,
-			reservation: reservation,
-			firstName: reservation.firstName,
-			lastName: reservation.lastName,
-			phone: reservation.phone,
-			email: reservation.email,
-			id: reservation.id
-        });	 
+            reservation: reservation,
+            firstName: reservation.firstName,
+            lastName: reservation.lastName,
+            phone: reservation.phone,
+            email: reservation.email,
+            id: reservation.id
+        });
     }
 
     closeChangeReservationForm = (event) => {
@@ -78,36 +78,36 @@ class Admin extends Component {
             changeReservationForm: false
         });
     }
-	
-	closeChangeGuestForm = (event) => {
+
+    closeChangeGuestForm = (event) => {
         event.preventDefault();
         this.setState({
             changeGuestForm: false
         });
     }
 
-	changeGuest = (event) => {
+    changeGuest = (event) => {
         event.preventDefault();
-		let postData = {
-			firstName: this.state.firstName,
-			lastName: this.state.lastName,
-			phone: this.state.phone,
-			email: this.state.email,
-			id: this.state.id
-		}
-		let formValues = JSON.stringify(postData);
-		fetch('http://localhost:8888/changeGuest.php?formData=' + formValues, {
-			method: 'GET',
-			headers:
-			{
-				'Accept': 'application/json',
-				'Content-type': 'text/plain',
-			}
-		})
-			.then((response) => {
-				window.location.assign("/admin");
-			})
-			.catch(error => this.props.handleErrorMessage());	
+        let postData = {
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            phone: this.state.phone,
+            email: this.state.email,
+            id: this.state.id
+        }
+        let formValues = JSON.stringify(postData);
+        fetch('http://localhost:8888/changeGuest.php?formData=' + formValues, {
+            method: 'GET',
+            headers:
+            {
+                'Accept': 'application/json',
+                'Content-type': 'text/plain',
+            }
+        })
+            .then((response) => {
+                window.location.assign("/admin");
+            })
+            .catch(error => this.props.handleErrorMessage());
     }
 
     deleteReservation = (event) => {
@@ -119,8 +119,8 @@ class Admin extends Component {
                 'Content-type': 'application/json',
             }
         })
-        .catch(error => this.props.handleErrorMessage());
-		window.location.assign("/admin");
+            .catch(error => this.props.handleErrorMessage());
+        window.location.assign("/admin");
     }
 
     handleChange = (event) => {
@@ -130,24 +130,24 @@ class Admin extends Component {
     render() {
         return (
             <div>
-				{this.state.changeReservationForm && <ChangeReservationForm 
-				 appState={this.props.appState} 
-				 handleChange={this.props.handleChange}
-				 fetchDate={this.props.fetchDate}
-				 changeReservation={this.props.changeReservation} closeChangeReservationForm={this.closeChangeReservationForm}
-				 showButtonForChangeRes={this.props.showButtonForChangeRes} />}
+                {this.state.changeReservationForm && <ChangeReservationForm
+                    appState={this.props.appState}
+                    handleChange={this.props.handleChange}
+                    fetchDate={this.props.fetchDate}
+                    changeReservation={this.props.changeReservation} closeChangeReservationForm={this.closeChangeReservationForm}
+                    showButtonForChangeRes={this.props.showButtonForChangeRes} />}
 
-				{this.state.changeGuestForm && <ChangeGuestForm handleChange={this.handleChange} state={this.state} closeChangeGuestForm={this.closeChangeGuestForm} changeGuest={this.changeGuest}/>}
+                {this.state.changeGuestForm && <ChangeGuestForm handleChange={this.handleChange} state={this.state} closeChangeGuestForm={this.closeChangeGuestForm} changeGuest={this.changeGuest} />}
 
-				{!this.state.changeReservationForm && !this.state.changeGuestForm && 
-				<div>
-					<div>
-						<h2>Reservations</h2>
-					</div>
-					<div className="displayBookings">
-								{this.state.reservations}
-					 </div>
-				</div>}
+                {!this.state.changeReservationForm && !this.state.changeGuestForm &&
+                    <div>
+                        <div>
+                            <h2>Reservations</h2>
+                        </div>
+                        <div className="displayBookings">
+                            {this.state.reservations}
+                        </div>
+                    </div>}
             </div>
         );
     }

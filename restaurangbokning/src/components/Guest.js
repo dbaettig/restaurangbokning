@@ -46,7 +46,7 @@ class Guest extends Component {
 							</form>
 
 							<div className={"timeButtons " + buttonStyle}>
-								<p>Available sittings:</p>
+								<h3>Available sittings:</h3>
 								{this.props.state.firstSitting ? (
 									<button name="chosenSitting" value="06:00" onClick={(event) => { this.props.handleChange(event); this.props.showGuestForm(); }}>
 										06:00</button>
