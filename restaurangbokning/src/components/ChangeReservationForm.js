@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import '../App.css';
 
 class ChangeReservationForm extends Component {
-	
-    render() {
+
+	render() {
 		let buttonStyle = 'hidden';
 		this.props.appState.buttonStyle ? buttonStyle = 'display' : buttonStyle = 'hidden';
-		let today = new Date().toJSON().slice(0,10);
-		console.log(this.props.appState.date);
+		let today = new Date().toJSON().slice(0, 10);
+
         return (
             <div className="wrapper">
 				<div className="formWrapper">
@@ -50,6 +50,7 @@ class ChangeReservationForm extends Component {
 			</div>
         )
     }
+
 }
 
 export default ChangeReservationForm;
