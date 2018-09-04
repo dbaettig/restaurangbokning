@@ -67,6 +67,13 @@ h1 a{
  text-decoration:none;
 }
 
+h2{
+  font-family: 'Paytone One', sans-serif;
+  color:#2F3030;
+  //font-size:2.6em; 
+  letter-spacing: 3px;
+}
+
 
 .formWrapper{
   background-color: whitesmoke;
@@ -84,7 +91,7 @@ h1 a{
 
 }
 p{
-  font-family:'roboto';
+  font-family:'Josefin Sans', sans-serif;
 color:black;
 }
 .timeButtons{
@@ -116,6 +123,11 @@ button:hover{
 .adminButton {
   width: 100%;
   text-align: center;
+}
+.reservationsButton {
+	width: 24%;
+	height: 37px;
+	margin: 3px;
 }
 
 input {

@@ -41,10 +41,11 @@ class Admin extends Component {
 						});
         let reservations = sortedData.map((reservation) =>
             <div key={reservation.resId}>
-                {reservation.date} {reservation.time} {reservation.participants} people <br /> {reservation.firstName} {reservation.lastName}
-                <button name={reservation.resId} onClick={this.deleteReservation}>Delete reservation</button>
-                <button name={reservation.resId} onClick={() => {this.openChangeReservationForm(reservation)}}>Change reservation</button> 
-				<button onClick={() => {this.openChangeGuestForm(reservation)}}>Change guest</button> 
+                <p>{reservation.date} {reservation.time} {reservation.participants} people <br /> 
+				{reservation.firstName} {reservation.lastName}</p> 
+                <button className="reservationsButton" name={reservation.resId} onClick={this.deleteReservation}>Delete reservation</button>
+                <button className="reservationsButton" name={reservation.resId} onClick={() => {this.openChangeReservationForm(reservation)}}>Change reservation</button> 
+				<button className="reservationsButton" onClick={() => {this.openChangeGuestForm(reservation)}}>Change guest</button> 
             </div>
         );
 		
@@ -138,9 +139,15 @@ class Admin extends Component {
 
 				{this.state.changeGuestForm && <ChangeGuestForm handleChange={this.handleChange} state={this.state} closeChangeGuestForm={this.closeChangeGuestForm} changeGuest={this.changeGuest}/>}
 
-				{!this.state.changeReservationForm && !this.state.changeGuestForm && <div className="displayBookings">
-							{this.state.reservations}
-				 </div>}
+				{!this.state.changeReservationForm && !this.state.changeGuestForm && 
+				<div>
+					<div>
+						<h2>Reservations</h2>
+					</div>
+					<div className="displayBookings">
+								{this.state.reservations}
+					 </div>
+				</div>}
             </div>
         );
     }
