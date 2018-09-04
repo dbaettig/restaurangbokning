@@ -34,7 +34,12 @@ class Admin extends Component {
     }
 
     displayReservations = (data) => {
-        let reservations = data.map((reservation) =>
+		let sortedData = data.sort((a, b) => {
+    					let dateA = new Date(a.date), dateB = new Date(b.date);
+						return dateA - dateB;
+					});
+		console.log(sortedData);
+        let reservations = sortedData.map((reservation) =>
             <div key={reservation.resId}>
                 Datum: {reservation.date} {reservation.time} {reservation.participants} {reservation.firstName} ID: {reservation.resId}
                 <button name={reservation.resId} onClick={this.deleteReservation}>Delete</button>
@@ -42,6 +47,7 @@ class Admin extends Component {
 				<button onClick={() => {this.openChangeGuestForm(reservation)}}>Change guest info</button> 
             </div>
         );
+		
         this.setState({ reservations: reservations })
     }
 
@@ -80,9 +86,15 @@ class Admin extends Component {
     }
 
 	changeGuest = (event) => {
-		console.log(this.state);
         event.preventDefault();
-		let formValues = JSON.stringify(this.state);
+		let postData = {
+			firstName: this.state.firstName,
+			lastName: this.state.lastName,
+			phone: this.state.phone,
+			email: this.state.email,
+			id: this.state.id
+		}
+		let formValues = JSON.stringify(postData);
 		fetch('http://localhost:8888/changeGuest.php?formData=' + formValues, {
 			method: 'GET',
 			headers:
@@ -123,7 +135,7 @@ class Admin extends Component {
 				 handleChange={this.props.handleChange}
 				 fetchDate={this.props.fetchDate}
 				 changeReservation={this.props.changeReservation} closeChangeReservationForm={this.closeChangeReservationForm}
-				 showConfirmationForChangeRes={this.props.showConfirmationForChangeRes} />}
+				 showButtonForChangeRes={this.props.showButtonForChangeRes} />}
 
 				{this.state.changeGuestForm && <ChangeGuestForm handleChange={this.handleChange} state={this.state} closeChangeGuestForm={this.closeChangeGuestForm} changeGuest={this.changeGuest}/>}
 
