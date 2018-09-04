@@ -214,6 +214,34 @@ class App extends Component {
     this.setState({ loader: !this.state.loader })
   }
 
+  //TODO: KALLA PÅ FUNCTIONEN I SLUTET POSTGUESTNADRESERVATION, 
+	//SKIKA MED DESS FORMVALUES SOM PARAMETER SÅ BEHVÖER DET INTE DEKLARERAS IGEN
+      sendMail = () => {
+         console.log('email');
+
+        let postData = {
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            phone: this.state.phone,
+            email: this.state.email,
+            date: this.state.date,
+            chosenSitting: this.state.chosenSitting,
+            participants: this.state.participants
+        }
+        let formValues = JSON.stringify(postData);
+        fetch('http://localhost:8888/confirmationMail.php?formData=' + formValues, {
+            method: 'GET',
+            headers:
+            {
+                'Accept': 'application/json',
+                'Content-type': 'text/plain',
+            }
+        })
+        .then((response) => {
+            console.log(response);
+        })
+      }
+
   render() {
     return (
       <div>
@@ -255,6 +283,8 @@ class App extends Component {
           </Switch>
           <Footer />
         </div>
+
+		<button onClick={this.sendMail}>MAIL</button>
       </div >
     );
   }
