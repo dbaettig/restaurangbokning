@@ -77,9 +77,9 @@ h2{
   width:80%;
   justify-content:center;
   margin-top:70px;
-
-
 }
+
+
 .dateForm{
   display:flex;
   flex-direction:column;
@@ -279,7 +279,7 @@ text-decoration: none;
       background-color: whitesmoke;
       -webkit-box-shadow: 0px 4px 37px -12px rgb(18, 13, 26); 
       width:30%;
-      height:250px;
+      //height:250px;
       justify-content:center;
       margin-top:40px;
   

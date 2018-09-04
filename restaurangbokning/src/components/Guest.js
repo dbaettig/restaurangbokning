@@ -29,7 +29,7 @@ class Guest extends Component {
 										<input type="text" required name="lastName" placeholder="last name" onChange={this.props.handleChange} />
 										<input type="text" required name="phone" placeholder="phone number" onChange={this.props.handleChange} />
 										<input type="text" required name="email" placeholder="email" onChange={this.props.handleChange} />
-										<button type="submit">BOOK</button>
+										<button type="submit">Book</button>
 									</form>
 								 	<button onClick={(event) => { window.location.assign("/"); }}>Cancel</button>
 								</div>
@@ -40,7 +40,7 @@ class Guest extends Component {
 							<form method="POST" className="dateForm" onSubmit={this.props.fetchDate}>
 								<input type="number" min="1" max="6" required name="participants" placeholder="2 People" onChange={this.props.handleChange} />
 								<input type="date" required min={today} name="date" onChange={this.props.handleChange} />
-								<button type="submit" value="submit">SEARCH AVAILABILITY</button>
+								<button type="submit" value="submit">Search Availability</button>
 							</form>
 					
 							<div className={"timeButtons " + buttonStyle}>
