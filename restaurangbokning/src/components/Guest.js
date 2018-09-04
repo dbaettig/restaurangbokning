@@ -39,7 +39,9 @@ class Guest extends Component {
 					</div>
 				) : (
 						<div>
+							
 							<form method="POST" className="dateForm" onSubmit={this.props.fetchDate}>
+								<h2>Make a reservation</h2>
 								<input type="number" min="1" max="6" required name="participants" placeholder="2 People" onChange={this.props.handleChange} />
 								<input type="date" required min={today} name="date" onChange={this.props.handleChange} />
 								<button type="submit" value="submit">Search Availability</button>

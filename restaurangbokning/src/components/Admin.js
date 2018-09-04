@@ -29,7 +29,6 @@ class Admin extends Component {
             .then((data) => {
                 this.props.handleLoader();
                 this.displayReservations(data);
-                console.log(data);
             })
             .catch(error => {this.handleErrorMessage(); this.handleLoader();});
     }
