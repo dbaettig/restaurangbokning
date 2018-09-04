@@ -31,7 +31,7 @@ class Admin extends Component {
                 this.displayReservations(data);
                 console.log(data);
             })
-            .catch(error => this.props.handleErrorMessage());
+            .catch(error => {this.handleErrorMessage(); this.handleLoader();});
     }
 
     displayReservations = (data) => {
@@ -41,10 +41,10 @@ class Admin extends Component {
 						});
         let reservations = sortedData.map((reservation) =>
             <div key={reservation.resId}>
-                Datum: {reservation.date} {reservation.time} {reservation.participants} {reservation.firstName} ID: {reservation.resId}
-                <button name={reservation.resId} onClick={this.deleteReservation}>Delete</button>
+                {reservation.date} {reservation.time} {reservation.participants} people <br /> {reservation.firstName} {reservation.lastName}
+                <button name={reservation.resId} onClick={this.deleteReservation}>Delete reservation</button>
                 <button name={reservation.resId} onClick={() => {this.openChangeReservationForm(reservation)}}>Change reservation</button> 
-				<button onClick={() => {this.openChangeGuestForm(reservation)}}>Change guest info</button> 
+				<button onClick={() => {this.openChangeGuestForm(reservation)}}>Change guest</button> 
             </div>
         );
 		
@@ -106,8 +106,7 @@ class Admin extends Component {
 			.then((response) => {
 				window.location.assign("/admin");
 			})
-			.catch(error => this.props.handleErrorMessage());
-	//Redirect back to admin page.	
+			.catch(error => this.props.handleErrorMessage());	
     }
 
     deleteReservation = (event) => {

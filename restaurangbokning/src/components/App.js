@@ -61,7 +61,8 @@ class App extends Component {
         this.countReservations(time);
         this.setState({ buttonStyle: true });
       })
-      .catch(error => this.handleErrorMessage());
+      .catch(error => {this.handleErrorMessage(); this.handleLoader();});
+	  
   }
   //Count how many tables are booked to see if sittings are avaliable.
   countReservations = (time) => {
@@ -84,7 +85,7 @@ class App extends Component {
       showGuestForm: true
     })
   }
-  //Get id for guest using the entered email.
+  //Get id for returning guest using the their email.
   fetchGuestId = (event) => {
     event.preventDefault();
     this.handleLoader();
@@ -105,7 +106,7 @@ class App extends Component {
         this.handleLoader();
         this.checkIfIdExists(guestId);
       })
-      .catch(error => this.handleErrorMessage());
+      .catch(error => {this.handleErrorMessage(); this.handleLoader();});
   }
   //If the guest is already in the db, post only the reservation.
   checkIfIdExists = (guestId) => {
@@ -117,8 +118,25 @@ class App extends Component {
       this.postReservation();
     }
   }
-
-
+  //Post reservation for returning guest.
+  postReservation = () => {
+		this.handleLoader();
+		let formValues = JSON.stringify(this.state);
+		fetch('http://localhost:8888/postReservation.php?formData=' + formValues, {
+			method: 'GET',
+			headers:
+			{
+				'Accept': 'application/json',
+				'Content-type': 'text/plain',
+			}
+		})
+			.then((response) => {
+				this.handleLoader();
+			})
+			.catch(error => this.handleErrorMessage());
+		this.setState({showConfirmation: true});
+	}
+  //Post guest and reservation for new guest.
   postGuestAndReservation = () => {
     this.handleLoader();
     let postData = {
@@ -142,10 +160,10 @@ class App extends Component {
       .then((response) => {
         this.handleLoader();
       })
-      .catch(error => this.handleErrorMessage());
+      .catch(error => {this.handleErrorMessage(); this.handleLoader();});
     this.setState({ showConfirmation: true });
   }
-
+  //Set state from input fields.
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value })
   }
@@ -166,6 +184,7 @@ class App extends Component {
 
   changeReservation = (event) => {
     event.preventDefault();
+	this.handleLoader();
     let postData = {
       date: this.state.date,
       chosenSitting: this.state.chosenSitting,
@@ -184,7 +203,7 @@ class App extends Component {
       .then((response) => {
         window.location.assign("/admin");
       })
-      .catch(error => this.handleErrorMessage());
+      .catch(error => {this.handleErrorMessage(); this.handleLoader();});
     //Redirect back to admin page.
   }
 
