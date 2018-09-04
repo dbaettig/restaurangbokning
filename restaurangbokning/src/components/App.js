@@ -5,15 +5,17 @@ import Guest from './Guest';
 import Admin from './Admin';
 import Contact from './Contact';
 import Header from './Header';
+import Footer from './Footer';
 import ErrorMessage from './ErrorMessage';
 import ChangeReservationForm from './ChangeReservationForm';
 import ChangeGuestForm from './ChangeGuestForm';
+import ReactLoading from 'react-loading';
 import {
   Route,
   Switch
 } from 'react-router-dom';
 
-import ReactLoading from 'react-loading';
+
 
 class App extends Component {
   state = {
@@ -115,29 +117,6 @@ class App extends Component {
     }
   }
 
-  postReservation = () => {
-    this.handleLoader();
-    let postData = {
-      guestId: this.state.guestId,
-      date: this.state.date,
-      chosenSitting: this.state.chosenSitting,
-      participants: this.state.participants
-    }
-    let formValues = JSON.stringify(postData);
-    fetch('http://localhost:8888/postReservation.php?formData=' + formValues, {
-      method: 'GET',
-      headers:
-      {
-        'Accept': 'application/json',
-        'Content-type': 'text/plain',
-      }
-    })
-      .then((response) => {
-        this.handleLoader();
-      })
-      .catch(error => this.handleErrorMessage());
-    this.setState({ showConfirmation: true });
-  }
 
   postGuestAndReservation = () => {
     this.handleLoader();
@@ -254,10 +233,12 @@ class App extends Component {
             <Route exact path="/changeReservationForm" component={ChangeReservationForm} />
             <Route exact path="/changeGuestForm" component={ChangeGuestForm} />
           </Switch>
+          <Footer />
         </div>
       </div >
     );
   }
+
 }
 
 export default App;
